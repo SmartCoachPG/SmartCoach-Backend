@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\com",
+    "\\src\\main\\java\\com\\smartcoach",
+    "\\src\\main\\java\\com\\smartcoach\\smartcoachBackend",
+    "\\src\\main\\resources"
+  ],
+  "SelectedNode": "\\src\\main\\java\\com\\smartcoach\\smartcoachBackend\\SmartcoachBackendApplication.java",
+  "PreviewInSolutionExplorer": false
+}
