@@ -29,4 +29,13 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
+    public Optional<Usuario> validarSesion(String email, String contrasenna) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
+        if (usuarioOpt.isPresent() && usuarioOpt.get().getContrasenna().equals(contrasenna)) {
+            return usuarioOpt;
+        }
+        return Optional.empty();
+    }
+
+
 }
