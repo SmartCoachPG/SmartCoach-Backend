@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 @Entity
 @Table(name = "Usuario")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
 
     @Id
@@ -23,14 +24,18 @@ public class Usuario {
     @Lob
     private byte[] fotoPerfil;
 
+    @Column(nullable = false)
+    private Integer admi;
+
     public Usuario() {
     }
 
-    public Usuario(String nombre, String email, String contrasenna, byte[] fotoPerfil) {
+    public Usuario(String nombre, String email, String contrasenna, byte[] fotoPerfil,Integer admi) {
         this.nombre = nombre;
         this.email = email;
         this.contrasenna = contrasenna;
         this.fotoPerfil = fotoPerfil;
+        this.admi = admi;
     }
 
     public Long getId() {
@@ -73,6 +78,14 @@ public class Usuario {
         this.fotoPerfil = fotoPerfil;
     }
 
+    public Integer getAdmi() {
+        return admi;
+    }
+
+    public void setAdmi(Integer admi) {
+        this.admi = admi;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -81,6 +94,7 @@ public class Usuario {
                 ", email='" + email + '\'' +
                 ", contrasenna='" + contrasenna + '\'' +
                 ", fotoPerfil=" + Arrays.toString(fotoPerfil) +
+                ", admi=" + admi +
                 '}';
     }
 }
