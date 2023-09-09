@@ -1,6 +1,6 @@
 package com.smartcoach.smartcoachBackend.Business.user.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Arrays;
 
 @Entity

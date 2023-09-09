@@ -1,7 +1,7 @@
 package com.smartcoach.smartcoachBackend.Business.admi.entities;
 
 import com.smartcoach.smartcoachBackend.Business.user.entities.Usuario;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity

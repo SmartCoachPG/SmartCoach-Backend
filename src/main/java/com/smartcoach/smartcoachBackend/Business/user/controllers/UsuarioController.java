@@ -65,5 +65,14 @@ public class UsuarioController {
         }
     }
 
+    @PostMapping("/hashContraseñas")
+    public String migratePasswords() {
+        try {
+            usuarioService.hashAllExistingPasswords();
+            return "Migración de contraseñas completada exitosamente.";
+        } catch (Exception e) {
+            return "Ocurrió un error durante la migración de contraseñas: " + e.getMessage();
+        }
+    }
 
 }
