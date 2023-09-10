@@ -27,6 +27,9 @@ public class Usuario {
     @Column(nullable = false)
     private Integer admi;
 
+    private String token;
+
+
     public Usuario() {
     }
 
@@ -36,6 +39,14 @@ public class Usuario {
         this.contrasenna = contrasenna;
         this.fotoPerfil = fotoPerfil;
         this.admi = admi;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Long getId() {

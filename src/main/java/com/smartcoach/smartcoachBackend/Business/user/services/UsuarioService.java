@@ -1,6 +1,7 @@
 package com.smartcoach.smartcoachBackend.Business.user.services;
 import com.smartcoach.smartcoachBackend.Business.user.entities.Usuario;
 import com.smartcoach.smartcoachBackend.Persistence.user.UsuarioRepository;
+import com.smartcoach.smartcoachBackend.Security.AuthService;
 import com.smartcoach.smartcoachBackend.Security.PasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private AuthService authService;
 
     @Autowired
     private PasswordService passwordService;
@@ -36,17 +40,21 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
+
     public Optional<Usuario> validarSesion(String email, String contrasenna) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
         if (usuarioOpt.isPresent()){
             String hashPassword = usuarioOpt.get().getContrasenna();
-            if (passwordService.checkPassword(contrasenna,hashPassword))
-            {
-                return usuarioOpt;
+            if (passwordService.checkPassword(contrasenna, hashPassword)) {
+                Usuario usuario = usuarioOpt.get();
+                String token = authService.getJWTToken(usuario.getEmail());
+                usuario.setToken(token);
+                return Optional.of(usuario);
             }
         }
         return Optional.empty();
     }
+
 
     @Transactional
     public void hashAllExistingPasswords() {
@@ -58,4 +66,7 @@ public class UsuarioService {
         }
         usuarioRepository.saveAll(usuarios);
     }
+
+
+
 }
