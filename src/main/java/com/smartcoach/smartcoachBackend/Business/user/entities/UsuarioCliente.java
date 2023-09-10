@@ -22,18 +22,34 @@ public class UsuarioCliente extends Usuario{
     @Column(name = "nivelactividadfisicaid")
     private Integer nivelActividadFisicaid;
 
+
     @Column(name = "objetivorutinaid", nullable = false)
     private Integer objetivoRutinaid;
+
+    @ManyToOne
+    @JoinColumn(name = "objetivorutinaid", nullable = false, insertable = false, updatable = false)
+    private ObjetivoRutina objetivoRutina;
 
     public UsuarioCliente() {
     }
 
-    public UsuarioCliente(String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid) {
+    public UsuarioCliente(String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, ObjetivoRutina objetivoRutina) {
         this.genero = genero;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.gimnasioid = gimnasioid;
         this.nivelActividadFisicaid = nivelActividadFisicaid;
         this.objetivoRutinaid = objetivoRutinaid;
+        this.objetivoRutina = objetivoRutina;
+    }
+
+    public UsuarioCliente(String nombre, String email, String contrasenna, byte[] fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, ObjetivoRutina objetivoRutina) {
+        super(nombre, email, contrasenna, fotoPerfil, admi);
+        this.genero = genero;
+        this.fechaDeNacimiento = fechaDeNacimiento;
+        this.gimnasioid = gimnasioid;
+        this.nivelActividadFisicaid = nivelActividadFisicaid;
+        this.objetivoRutinaid = objetivoRutinaid;
+        this.objetivoRutina = objetivoRutina;
     }
 
     public String getGenero() {
@@ -76,14 +92,11 @@ public class UsuarioCliente extends Usuario{
         this.objetivoRutinaid = objetivoRutinaid;
     }
 
-    @Override
-    public String toString() {
-        return "UsuarioCliente{" +
-                "genero='" + genero + '\'' +
-                ", fechaDeNacimiento=" + fechaDeNacimiento +
-                ", gimnasioid=" + gimnasioid +
-                ", nivelActividadFisicaid=" + nivelActividadFisicaid +
-                ", objetivoRutinaid=" + objetivoRutinaid +
-                "} " + super.toString();
+    public ObjetivoRutina getObjetivoRutina() {
+        return objetivoRutina;
+    }
+
+    public void setObjetivoRutina(ObjetivoRutina objetivoRutina) {
+        this.objetivoRutina = objetivoRutina;
     }
 }
