@@ -1,0 +1,42 @@
+package com.smartcoach.smartcoachBackend.Business.admi.controllers;
+
+import com.smartcoach.smartcoachBackend.Business.admi.entities.UbicacionxItem;
+import com.smartcoach.smartcoachBackend.Business.admi.services.UbicacionxItemService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/ubicacionxitem")
+public class UbicacionxItemController {
+
+    @Autowired
+    private UbicacionxItemService ubicacionxItemService;
+
+    @GetMapping
+    public List<UbicacionxItem> getAllUbicacionxItems() {
+        return ubicacionxItemService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public UbicacionxItem getUbicacionxItemById(@PathVariable int id) {
+        return ubicacionxItemService.findById(id).orElse(null);
+    }
+
+    @PostMapping("/add")
+    public UbicacionxItem addUbicacionxItem(@RequestBody UbicacionxItem ubicacionxItem) {
+        return ubicacionxItemService.save(ubicacionxItem);
+    }
+
+    @PutMapping("/update")
+    public UbicacionxItem updateUbicacionxItem(@RequestBody UbicacionxItem ubicacionxItem) {
+        return ubicacionxItemService.save(ubicacionxItem);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteUbicacionxItem(@PathVariable int id) {
+        ubicacionxItemService.deleteById(id);
+        return "UbicacionxItem id " + id + " deleted.";
+    }
+}
