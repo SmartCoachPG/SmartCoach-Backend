@@ -1,0 +1,53 @@
+package com.smartcoach.smartcoachBackend.Business.admi.entities;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "item")
+public class Item {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
+    private byte[] imagen;
+
+    @Column(length = 255, nullable = false)
+    private String nombre;
+
+    public Item(Long id, byte[] imagen, String nombre) {
+        this.id = id;
+        this.imagen = imagen;
+        this.nombre = nombre;
+    }
+
+    public Item()
+    {
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+}
