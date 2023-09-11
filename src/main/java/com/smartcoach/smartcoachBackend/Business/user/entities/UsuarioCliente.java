@@ -30,19 +30,24 @@ public class UsuarioCliente extends Usuario{
     @JoinColumn(name = "objetivorutinaid", nullable = false, insertable = false, updatable = false)
     private ObjetivoRutina objetivoRutina;
 
+    @ManyToOne
+    @JoinColumn(name = "nivelactividadfisicaid", referencedColumnName = "id",insertable = false, updatable = false)
+    private NivelActividadFisica nivelActividadFisica;
+
     public UsuarioCliente() {
     }
 
-    public UsuarioCliente(String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, ObjetivoRutina objetivoRutina) {
+    public UsuarioCliente(String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, ObjetivoRutina objetivoRutina, NivelActividadFisica nivelActividadFisica) {
         this.genero = genero;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.gimnasioid = gimnasioid;
         this.nivelActividadFisicaid = nivelActividadFisicaid;
         this.objetivoRutinaid = objetivoRutinaid;
         this.objetivoRutina = objetivoRutina;
+        this.nivelActividadFisica = nivelActividadFisica;
     }
 
-    public UsuarioCliente(String nombre, String email, String contrasenna, byte[] fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, ObjetivoRutina objetivoRutina) {
+    public UsuarioCliente(String nombre, String email, String contrasenna, byte[] fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, ObjetivoRutina objetivoRutina, NivelActividadFisica nivelActividadFisica) {
         super(nombre, email, contrasenna, fotoPerfil, admi);
         this.genero = genero;
         this.fechaDeNacimiento = fechaDeNacimiento;
@@ -50,6 +55,7 @@ public class UsuarioCliente extends Usuario{
         this.nivelActividadFisicaid = nivelActividadFisicaid;
         this.objetivoRutinaid = objetivoRutinaid;
         this.objetivoRutina = objetivoRutina;
+        this.nivelActividadFisica = nivelActividadFisica;
     }
 
     public String getGenero() {
@@ -98,5 +104,13 @@ public class UsuarioCliente extends Usuario{
 
     public void setObjetivoRutina(ObjetivoRutina objetivoRutina) {
         this.objetivoRutina = objetivoRutina;
+    }
+
+    public NivelActividadFisica getNivelActividadFisica() {
+        return nivelActividadFisica;
+    }
+
+    public void setNivelActividadFisica(NivelActividadFisica nivelActividadFisica) {
+        this.nivelActividadFisica = nivelActividadFisica;
     }
 }
