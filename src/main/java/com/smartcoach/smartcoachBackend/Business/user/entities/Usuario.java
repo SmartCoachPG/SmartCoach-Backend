@@ -97,15 +97,5 @@ public class Usuario {
         this.admi = admi;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", email='" + email + '\'' +
-                ", contrasenna='" + contrasenna + '\'' +
-                ", fotoPerfil=" + Arrays.toString(fotoPerfil) +
-                ", admi=" + admi +
-                '}';
-    }
+
 }
