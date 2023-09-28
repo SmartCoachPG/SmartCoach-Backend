@@ -21,8 +21,8 @@ public class Usuario {
     @Column(name = "contrasenna", nullable = false)
     private String contrasenna;
 
-    @Lob
-    private byte[] fotoPerfil;
+    @Column(name = "fotoperfil")
+    private String fotoPerfil;
 
     @Column(nullable = false)
     private Integer admi;
@@ -33,7 +33,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String email, String contrasenna, byte[] fotoPerfil,Integer admi) {
+    public Usuario(String nombre, String email, String contrasenna, String fotoPerfil,Integer admi) {
         this.nombre = nombre;
         this.email = email;
         this.contrasenna = contrasenna;
@@ -81,11 +81,11 @@ public class Usuario {
         this.contrasenna = contrasenna;
     }
 
-    public byte[] getFotoPerfil() {
+    public String getFotoPerfil() {
         return fotoPerfil;
     }
 
-    public void setFotoPerfil(byte[] fotoPerfil) {
+    public void setFotoPerfil(String fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
 

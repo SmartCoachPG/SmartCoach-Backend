@@ -59,9 +59,9 @@ public class UsuarioController {
             Usuario usuario = new Usuario();
             usuario.setId(usuarioSubclase.getId());
             usuario.setNombre(usuarioSubclase.getNombre());
-            usuario.setFotoPerfil(usuarioSubclase.getFotoPerfil());
             usuario.setAdmi(usuarioSubclase.getAdmi());
             usuario.setToken(usuarioSubclase.getToken());
+            usuario.setFotoPerfil(usuarioSubclase.getFotoPerfil());
 
             return ResponseEntity.ok(usuario);
         } else {

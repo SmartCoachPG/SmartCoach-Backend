@@ -15,7 +15,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .addFilterAfter(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/api/usuarios/iniciarsesion").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/usuarios/iniciarsesion","/api/usuarios/hashContraseñas").permitAll()
                 .anyRequest().authenticated();
 
         // desarrollo

@@ -39,7 +39,7 @@ public class UsuarioCliente extends Usuario{
 
     }
 
-    public UsuarioCliente(String nombre, String email, String contrasenna, byte[] fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, ObjetivoRutina objetivoRutina, NivelActividadFisica nivelActividadFisica) {
+    public UsuarioCliente(String nombre, String email, String contrasenna, String fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, ObjetivoRutina objetivoRutina, NivelActividadFisica nivelActividadFisica) {
         super(nombre, email, contrasenna, fotoPerfil, admi);
         this.genero = genero;
         this.fechaDeNacimiento = fechaDeNacimiento;
