@@ -26,13 +26,6 @@ public class UsuarioCliente extends Usuario{
     @Column(name = "objetivorutinaid", nullable = false)
     private Integer objetivoRutinaid;
 
-    @ManyToOne
-    @JoinColumn(name = "objetivorutinaid", nullable = false, insertable = false, updatable = false)
-    private ObjetivoRutina objetivoRutina;
-
-    @ManyToOne
-    @JoinColumn(name = "nivelactividadfisicaid", referencedColumnName = "id",insertable = false, updatable = false)
-    private NivelActividadFisica nivelActividadFisica;
 
     public UsuarioCliente() {
     }
@@ -43,8 +36,7 @@ public class UsuarioCliente extends Usuario{
         this.gimnasioid = gimnasioid;
         this.nivelActividadFisicaid = nivelActividadFisicaid;
         this.objetivoRutinaid = objetivoRutinaid;
-        this.objetivoRutina = objetivoRutina;
-        this.nivelActividadFisica = nivelActividadFisica;
+
     }
 
     public UsuarioCliente(String nombre, String email, String contrasenna, byte[] fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, ObjetivoRutina objetivoRutina, NivelActividadFisica nivelActividadFisica) {
@@ -54,8 +46,7 @@ public class UsuarioCliente extends Usuario{
         this.gimnasioid = gimnasioid;
         this.nivelActividadFisicaid = nivelActividadFisicaid;
         this.objetivoRutinaid = objetivoRutinaid;
-        this.objetivoRutina = objetivoRutina;
-        this.nivelActividadFisica = nivelActividadFisica;
+
     }
 
     public String getGenero() {
@@ -98,19 +89,5 @@ public class UsuarioCliente extends Usuario{
         this.objetivoRutinaid = objetivoRutinaid;
     }
 
-    public ObjetivoRutina getObjetivoRutina() {
-        return objetivoRutina;
-    }
 
-    public void setObjetivoRutina(ObjetivoRutina objetivoRutina) {
-        this.objetivoRutina = objetivoRutina;
-    }
-
-    public NivelActividadFisica getNivelActividadFisica() {
-        return nivelActividadFisica;
-    }
-
-    public void setNivelActividadFisica(NivelActividadFisica nivelActividadFisica) {
-        this.nivelActividadFisica = nivelActividadFisica;
-    }
 }
