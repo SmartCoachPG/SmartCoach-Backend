@@ -36,6 +36,15 @@ public class UsuarioAdministrador extends Usuario
         this.gimnasioId = gimnasioId;
     }
 
+    public UsuarioAdministrador(String nombre, String email, String contrasenna, String fotoPerfil, Integer admi, Long cedula, String puesto, Integer verificado, Date fechaDeRenovacion, Integer gimnasioId) {
+        super(nombre, email, contrasenna, fotoPerfil, admi);
+        this.cedula = cedula;
+        this.puesto = puesto;
+        this.verificado = verificado;
+        this.fechaDeRenovacion = fechaDeRenovacion;
+        this.gimnasioId = gimnasioId;
+    }
+
     public Long getCedula() {
         return cedula;
     }
