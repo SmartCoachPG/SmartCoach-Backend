@@ -15,7 +15,7 @@ public class UsuarioAdministradorController {
 
     @PostMapping("/crear")
     public ResponseEntity<UsuarioAdministrador> create(@RequestBody UsuarioAdministrador usuarioAdministrador) {
-        UsuarioAdministrador createdUsuarioAdministrador = usuarioAdministradorService.save(usuarioAdministrador);
+        UsuarioAdministrador createdUsuarioAdministrador = usuarioAdministradorService.create(usuarioAdministrador);
         return ResponseEntity.ok(createdUsuarioAdministrador);
     }
 
@@ -37,7 +37,7 @@ public class UsuarioAdministradorController {
         return usuarioAdministradorService.findById(id)
                 .map(existingUsuarioAdministrador -> {
                     usuarioAdministrador.setId(id);
-                    UsuarioAdministrador updatedUsuarioAdministrador = usuarioAdministradorService.save(usuarioAdministrador);
+                    UsuarioAdministrador updatedUsuarioAdministrador = usuarioAdministradorService.update(usuarioAdministrador);
                     return ResponseEntity.ok(updatedUsuarioAdministrador);
                 })
                 .orElse(ResponseEntity.notFound().build());

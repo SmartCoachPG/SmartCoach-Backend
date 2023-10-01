@@ -19,9 +19,14 @@ public class UsuarioAdministradorService {
     @Autowired
     private UsuarioAdministradorRepository usuarioAdministradorRepository;
 
-    public UsuarioAdministrador save(UsuarioAdministrador usuarioAdministrador) {
+    public UsuarioAdministrador create(UsuarioAdministrador usuarioAdministrador) {
         String password = usuarioAdministrador.getContrasenna();
         usuarioAdministrador.setContrasenna(passwordService.encryptPassword(password));
+        return usuarioAdministradorRepository.save(usuarioAdministrador);
+    }
+
+    public UsuarioAdministrador update(UsuarioAdministrador usuarioAdministrador)
+    {
         return usuarioAdministradorRepository.save(usuarioAdministrador);
     }
 

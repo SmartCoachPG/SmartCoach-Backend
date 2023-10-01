@@ -17,11 +17,11 @@ public class ObjetivoRutinaService {
         return repository.save(objetivoRutina);
     }
 
-    public ObjetivoRutina getById(Long id) {
+    public ObjetivoRutina findById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public List<ObjetivoRutina> getAll() {
+    public List<ObjetivoRutina> findAll() {
         return repository.findAll();
     }
 

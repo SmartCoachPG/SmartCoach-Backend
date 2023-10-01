@@ -14,34 +14,39 @@ public class UsuarioClienteController {
     @Autowired
     private UsuarioClienteService usuarioClienteService;
 
-    @PostMapping
-    public ResponseEntity<UsuarioCliente> crearUsuarioCliente(@RequestBody UsuarioCliente usuarioCliente) {
-        UsuarioCliente nuevoUsuarioCliente = usuarioClienteService.crearUsuarioCliente(usuarioCliente);
+    @PostMapping("/crear")
+    public ResponseEntity<UsuarioCliente> create(@RequestBody UsuarioCliente usuarioCliente) {
+        UsuarioCliente nuevoUsuarioCliente = usuarioClienteService.create(usuarioCliente);
         return ResponseEntity.ok(nuevoUsuarioCliente);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioCliente> obtenerUsuarioClientePorId(@PathVariable Long id) {
-        return usuarioClienteService.obtenerUsuarioClientePorId(id)
+    public ResponseEntity<UsuarioCliente> findById(@PathVariable Long id) {
+        return usuarioClienteService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping
-    public ResponseEntity<List<UsuarioCliente>> obtenerTodosLosUsuariosClientes() {
-        List<UsuarioCliente> usuariosClientes = usuarioClienteService.obtenerTodosLosUsuariosClientes();
+    public ResponseEntity<List<UsuarioCliente>> getAll() {
+        List<UsuarioCliente> usuariosClientes = usuarioClienteService.findAll();
         return ResponseEntity.ok(usuariosClientes);
     }
 
-    @PutMapping
-    public ResponseEntity<UsuarioCliente> actualizarUsuarioCliente(@RequestBody UsuarioCliente usuarioCliente) {
-        UsuarioCliente usuarioClienteActualizado = usuarioClienteService.actualizarUsuarioCliente(usuarioCliente);
-        return ResponseEntity.ok(usuarioClienteActualizado);
+    @PutMapping("/{id}")
+    public ResponseEntity<UsuarioCliente> update(@PathVariable Long id,@RequestBody UsuarioCliente usuarioCliente) {
+        return usuarioClienteService.findById(id)
+                .map(existingUsuarioCliente -> {
+                    usuarioCliente.setId(id);
+                    UsuarioCliente updatedCliente = usuarioClienteService.update(usuarioCliente);
+                    return ResponseEntity.ok(updatedCliente);
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarUsuarioClientePorId(@PathVariable Long id) {
-        usuarioClienteService.eliminarUsuarioClientePorId(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        usuarioClienteService.deteleById(id);
         return ResponseEntity.noContent().build();
     }
 }
