@@ -17,19 +17,17 @@ public class ValorEvaluacionFisica {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
-    @ManyToOne
-    @JoinColumn(name = "unidadmetricaid", nullable = true)
-    private UnidadMetrica unidadMetrica;
+    @Column(name = "unidadmetricaid", nullable = true)
+    private Integer unidadMetricaId;
 
-    public ValorEvaluacionFisica(int id, String nombre, String descripcion, UnidadMetrica unidadMetrica) {
+    public ValorEvaluacionFisica(int id, String nombre, String descripcion, Integer unidadMetricaId) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.unidadMetrica = unidadMetrica;
+        this.unidadMetricaId = unidadMetricaId;
     }
 
-    public ValorEvaluacionFisica()
-    {
+    public ValorEvaluacionFisica(){
 
     }
 
@@ -57,11 +55,11 @@ public class ValorEvaluacionFisica {
         this.descripcion = descripcion;
     }
 
-    public UnidadMetrica getUnidadMetrica() {
-        return unidadMetrica;
+    public Integer getUnidadMetricaId() {
+        return unidadMetricaId;
     }
 
-    public void setUnidadMetrica(UnidadMetrica unidadMetrica) {
-        this.unidadMetrica = unidadMetrica;
+    public void setUnidadMetricaId(Integer unidadMetricaId) {
+        this.unidadMetricaId = unidadMetricaId;
     }
 }

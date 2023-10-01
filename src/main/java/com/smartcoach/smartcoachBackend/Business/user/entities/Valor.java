@@ -14,20 +14,20 @@ public class Valor {
     @Column(name = "valor", nullable = false)
     private float valor;
 
-    @ManyToOne
-    @JoinColumn(name = "perfilmedicoid", nullable = true)
-    private PerfilMedico perfilMedico;
+    @Column(name = "perfilmedicoid")
+    private int perfilMedicoid;
 
-    @ManyToOne
-    @JoinColumn(name = "Valorevaluacionfisicaid", nullable = false)
-    private ValorEvaluacionFisica valorEvaluacionFisica;
+    @Column(name = "valorevaluacionfisicaid")
+    private int valorEvaluacionFisicaid;
 
-    public Valor(int id, float valor, PerfilMedico perfilMedico, ValorEvaluacionFisica valorEvaluacionFisica) {
+
+    public Valor(int id, float valor, int perfilMedicoid, int valorEvaluacionFisicaid) {
         this.id = id;
         this.valor = valor;
-        this.perfilMedico = perfilMedico;
-        this.valorEvaluacionFisica = valorEvaluacionFisica;
+        this.perfilMedicoid = perfilMedicoid;
+        this.valorEvaluacionFisicaid = valorEvaluacionFisicaid;
     }
+
     public Valor()
     {
 
@@ -49,19 +49,19 @@ public class Valor {
         this.valor = valor;
     }
 
-    public PerfilMedico getPerfilMedico() {
-        return perfilMedico;
+    public int getPerfilMedicoid() {
+        return perfilMedicoid;
     }
 
-    public void setPerfilMedico(PerfilMedico perfilMedico) {
-        this.perfilMedico = perfilMedico;
+    public void setPerfilMedicoid(int perfilMedicoid) {
+        this.perfilMedicoid = perfilMedicoid;
     }
 
-    public ValorEvaluacionFisica getValorEvaluacionFisica() {
-        return valorEvaluacionFisica;
+    public int getValorEvaluacionFisicaid() {
+        return valorEvaluacionFisicaid;
     }
 
-    public void setValorEvaluacionFisica(ValorEvaluacionFisica valorEvaluacionFisica) {
-        this.valorEvaluacionFisica = valorEvaluacionFisica;
+    public void setValorEvaluacionFisicaid(int valorEvaluacionFisicaid) {
+        this.valorEvaluacionFisicaid = valorEvaluacionFisicaid;
     }
 }

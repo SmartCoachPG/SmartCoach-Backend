@@ -31,11 +31,10 @@ public class Rutina {
     @Column(nullable = false,name="cantejercicios")
     private int cantEjercicios;
 
-    @ManyToOne
-    @JoinColumn(name = "usuarioclienteusuarioid", nullable = true)
-    private UsuarioCliente usuarioCliente;
+    @Column(name = "UsuarioClienteUsuarioid")
+    private int usuarioClienteId; // Representa el ID de UsuarioCliente sin establecer una relación directa
 
-    public Rutina(int id, String nombre, Time horaI, Time horaF, String dia, Time duracion, int cantEjercicios, UsuarioCliente usuarioCliente) {
+    public Rutina(int id, String nombre, Time horaI, Time horaF, String dia, Time duracion, int cantEjercicios, int usuarioClienteId) {
         this.id = id;
         this.nombre = nombre;
         this.horaI = horaI;
@@ -43,12 +42,10 @@ public class Rutina {
         this.dia = dia;
         this.duracion = duracion;
         this.cantEjercicios = cantEjercicios;
-        this.usuarioCliente = usuarioCliente;
+        this.usuarioClienteId = usuarioClienteId;
     }
 
-    public Rutina()
-    {
-
+    public Rutina(){
     }
 
     public int getId() {
@@ -107,12 +104,12 @@ public class Rutina {
         this.cantEjercicios = cantEjercicios;
     }
 
-    public UsuarioCliente getUsuarioCliente() {
-        return usuarioCliente;
+    public int getUsuarioClienteId() {
+        return usuarioClienteId;
     }
 
-    public void setUsuarioCliente(UsuarioCliente usuarioCliente) {
-        this.usuarioCliente = usuarioCliente;
+    public void setUsuarioClienteId(int usuarioClienteId) {
+        this.usuarioClienteId = usuarioClienteId;
     }
 }
 
