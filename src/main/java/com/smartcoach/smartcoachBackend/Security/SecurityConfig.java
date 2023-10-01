@@ -15,11 +15,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .addFilterAfter(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/api/usuarios/iniciarsesion","/api/usuarios/hashContraseñas","/api/usuarioadministrador").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/usuarios/iniciarsesion","/api/usuarios/hashContraseñas","/api/usuarioadministrador/crear").permitAll()
                 .anyRequest().authenticated();
 
         // desarrollo
-        /* http.cors().and().csrf().disable()
+         /*http.cors().and().csrf().disable()
                 .addFilterAfter(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()

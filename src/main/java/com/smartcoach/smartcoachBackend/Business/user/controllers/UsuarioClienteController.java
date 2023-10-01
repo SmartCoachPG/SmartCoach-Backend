@@ -21,7 +21,7 @@ public class UsuarioClienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioCliente> obtenerUsuarioClientePorId(@PathVariable Integer id) {
+    public ResponseEntity<UsuarioCliente> obtenerUsuarioClientePorId(@PathVariable Long id) {
         return usuarioClienteService.obtenerUsuarioClientePorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -40,7 +40,7 @@ public class UsuarioClienteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarUsuarioClientePorId(@PathVariable Integer id) {
+    public ResponseEntity<Void> eliminarUsuarioClientePorId(@PathVariable Long id) {
         usuarioClienteService.eliminarUsuarioClientePorId(id);
         return ResponseEntity.noContent().build();
     }

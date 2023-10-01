@@ -18,7 +18,7 @@ public class UsuarioClienteService {
         return usuarioClienteRepository.save(usuarioCliente);
     }
 
-    public Optional<UsuarioCliente> obtenerUsuarioClientePorId(Integer id) {
+    public Optional<UsuarioCliente> obtenerUsuarioClientePorId(Long id) {
         return usuarioClienteRepository.findById(id);
     }
 
@@ -30,7 +30,7 @@ public class UsuarioClienteService {
         return usuarioClienteRepository.save(usuarioCliente);
     }
 
-    public void eliminarUsuarioClientePorId(Integer id) {
+    public void eliminarUsuarioClientePorId(Long  id) {
         usuarioClienteRepository.deleteById(id);
     }
 }

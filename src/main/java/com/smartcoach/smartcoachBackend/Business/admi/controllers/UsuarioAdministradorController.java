@@ -13,7 +13,7 @@ public class UsuarioAdministradorController {
     @Autowired
     private UsuarioAdministradorService usuarioAdministradorService;
 
-    @PostMapping
+    @PostMapping("/crear")
     public ResponseEntity<UsuarioAdministrador> create(@RequestBody UsuarioAdministrador usuarioAdministrador) {
         UsuarioAdministrador createdUsuarioAdministrador = usuarioAdministradorService.save(usuarioAdministrador);
         return ResponseEntity.ok(createdUsuarioAdministrador);
