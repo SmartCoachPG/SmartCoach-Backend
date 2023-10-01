@@ -2,7 +2,9 @@ package com.smartcoach.smartcoachBackend.Business.exercise.controllers;
 
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.Musculo;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.MusculoService;
+import com.smartcoach.smartcoachBackend.Business.user.entities.ObjetivoRutina;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,5 +34,11 @@ public class MusculoController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         musculoService.deleteById(id);
+    }
+
+    @GetMapping("/crear")
+    public ResponseEntity<List<Musculo>> findAllCreate() {
+        List<Musculo> musculos = musculoService.findAll();
+        return ResponseEntity.ok(musculos);
     }
 }

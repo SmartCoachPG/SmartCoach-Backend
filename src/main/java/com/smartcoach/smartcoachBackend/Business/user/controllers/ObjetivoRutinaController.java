@@ -36,6 +36,14 @@ public class ObjetivoRutinaController {
         return ResponseEntity.ok(objetivoRutinas);
     }
 
+    @GetMapping("/crear")
+    public ResponseEntity<List<ObjetivoRutina>> findAllCreate() {
+        List<ObjetivoRutina> objetivoRutinas = objetivoRutinaService.findAll();
+        return ResponseEntity.ok(objetivoRutinas);
+    }
+
+
+
 
     @PutMapping
     public ObjetivoRutina update(@RequestBody ObjetivoRutina objetivoRutina) {
