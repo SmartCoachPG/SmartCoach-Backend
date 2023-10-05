@@ -14,7 +14,7 @@ public class ValorEvaluacionFisicaController {
     @Autowired
     private ValorEvaluacionFisicaService valorEvaluacionFisicaService;
 
-    @GetMapping
+    @GetMapping("/libre")
     public List<ValorEvaluacionFisica> findAll() {
         return valorEvaluacionFisicaService.findAll();
     }

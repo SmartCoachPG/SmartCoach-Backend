@@ -14,7 +14,7 @@ public class UnidadMetricaController {
     @Autowired
     private UnidadMetricaService unidadMetricaService;
 
-    @GetMapping
+    @GetMapping("/libre")
     public List<UnidadMetrica> findAll() {
         return unidadMetricaService.findAll();
     }
