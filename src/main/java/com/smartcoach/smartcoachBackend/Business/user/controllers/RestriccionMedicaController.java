@@ -15,6 +15,18 @@ public class RestriccionMedicaController {
     private RestriccionMedicaService restriccionMedicaService;
 
     @GetMapping("/libre")
+    public List<RestriccionMedica> findAll(@RequestParam(name = "query", required = false) String query) {
+        if (query != null && !query.trim().isEmpty()) {
+            // Realiza la búsqueda basada en el parámetro query
+            return restriccionMedicaService.findByNombreLimitacion(query);
+        } else {
+            // Si no se proporciona query, devuelve todas las restricciones médicas
+            return restriccionMedicaService.findAll();
+        }
+    }
+
+
+    @GetMapping()
     public List<RestriccionMedica> findAll() {
         return restriccionMedicaService.findAll();
     }

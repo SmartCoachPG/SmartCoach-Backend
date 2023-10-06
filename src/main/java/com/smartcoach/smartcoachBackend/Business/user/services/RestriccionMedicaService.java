@@ -14,6 +14,10 @@ public class RestriccionMedicaService {
     @Autowired
     private RestriccionMedicaRepository restriccionMedicaRepository;
 
+    public List<RestriccionMedica> findByNombreLimitacion(String query) {
+        return restriccionMedicaRepository.findByNombreLimitacionContainingIgnoreCase(query);
+    }
+
     public List<RestriccionMedica> findAll() {
         return restriccionMedicaRepository.findAll();
     }
