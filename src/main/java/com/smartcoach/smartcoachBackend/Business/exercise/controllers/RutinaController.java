@@ -24,7 +24,7 @@ public class RutinaController {
         return rutinaService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public Rutina save(@RequestBody Rutina rutina) {
         return rutinaService.save(rutina);
     }

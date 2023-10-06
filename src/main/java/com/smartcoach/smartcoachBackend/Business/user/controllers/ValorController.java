@@ -24,7 +24,7 @@ public class ValorController {
         return valorService.findById(id).orElse(null);
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public Valor save(@RequestBody Valor valor) {
         return valorService.save(valor);
     }

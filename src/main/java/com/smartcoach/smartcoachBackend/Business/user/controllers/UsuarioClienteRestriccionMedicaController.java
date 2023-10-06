@@ -26,7 +26,7 @@ public class UsuarioClienteRestriccionMedicaController {
         return service.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/crear")
     public UsuarioClienteRestriccionMedica save(@RequestBody UsuarioClienteRestriccionMedica usuarioClienteRestriccionMedica) {
         return service.save(usuarioClienteRestriccionMedica);
     }

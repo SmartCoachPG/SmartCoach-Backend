@@ -3,6 +3,7 @@ package com.smartcoach.smartcoachBackend.Business.exercise.entities;
 import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioCliente;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Time;
 
 @Entity
@@ -32,9 +33,9 @@ public class Rutina {
     private int cantEjercicios;
 
     @Column(name = "UsuarioClienteUsuarioid")
-    private int usuarioClienteId; // Representa el ID de UsuarioCliente sin establecer una relación directa
+    private Integer usuarioClienteId; // Representa el ID de UsuarioCliente sin establecer una relación directa
 
-    public Rutina(int id, String nombre, Time horaI, Time horaF, String dia, Time duracion, int cantEjercicios, int usuarioClienteId) {
+    public Rutina(int id, String nombre, Time horaI, Time horaF, String dia, Time duracion, int cantEjercicios, Integer usuarioClienteId) {
         this.id = id;
         this.nombre = nombre;
         this.horaI = horaI;
@@ -104,11 +105,11 @@ public class Rutina {
         this.cantEjercicios = cantEjercicios;
     }
 
-    public int getUsuarioClienteId() {
+    public Integer getUsuarioClienteId() {
         return usuarioClienteId;
     }
 
-    public void setUsuarioClienteId(int usuarioClienteId) {
+    public void setUsuarioClienteId(Integer usuarioClienteId) {
         this.usuarioClienteId = usuarioClienteId;
     }
 }

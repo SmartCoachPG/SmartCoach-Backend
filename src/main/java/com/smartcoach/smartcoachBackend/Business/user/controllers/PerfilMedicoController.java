@@ -24,7 +24,7 @@ public class PerfilMedicoController {
         return perfilMedicoService.findById(id).orElse(null);
     }
 
-    @PostMapping
+    @PostMapping ("/crear")
     public PerfilMedico save(@RequestBody PerfilMedico perfilMedico) {
         return perfilMedicoService.save(perfilMedico);
     }
