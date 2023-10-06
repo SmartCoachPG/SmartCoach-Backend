@@ -16,7 +16,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/usuarios/iniciarsesion", "/api/usuarios/hashContraseñas", "/api/usuarioadministrador/crear").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/objetivorutina/crear","/api/musculo/crear","/api/unidadmetrica/libre","/api/valorevaluacionfisica/libre").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/objetivorutina/crear","/api/musculo/crear","/api/unidadmetrica/libre","/api/valorevaluacionfisica/libre","/api/restriccionmedica/libre").permitAll()
                 .anyRequest().authenticated();
 
         // desarrollo

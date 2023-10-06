@@ -14,7 +14,7 @@ public class RestriccionMedicaController {
     @Autowired
     private RestriccionMedicaService restriccionMedicaService;
 
-    @GetMapping
+    @GetMapping("/libre")
     public List<RestriccionMedica> findAll() {
         return restriccionMedicaService.findAll();
     }
