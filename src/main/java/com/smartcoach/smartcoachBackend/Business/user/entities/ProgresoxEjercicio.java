@@ -1,6 +1,7 @@
 package com.smartcoach.smartcoachBackend.Business.user.entities;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.Date;
 
 @Entity
@@ -28,11 +29,14 @@ public class ProgresoxEjercicio {
 
     private String comentarios;
 
-    @ManyToOne
-    @JoinColumn(name = "usuarioclienteusuarioid", referencedColumnName = "usuarioid", nullable = false)
-    private UsuarioCliente usuarioCliente;
+    @Column(name = "descansoentreseries", nullable = false)
+    private Time descansoEntreSeries;
 
-    public ProgresoxEjercicio(Long id, Integer peso, Date fecha, Integer valoracion, Integer serie, Integer repeticiones, String comentarios, UsuarioCliente usuarioCliente) {
+    @Column(name = "usuarioclienteusuarioid", nullable = false)
+    private Integer usuarioClienteUsuarioid;
+
+
+    public ProgresoxEjercicio(Long id, Integer peso, Date fecha, Integer valoracion, Integer serie, Integer repeticiones, String comentarios, Time descansoEntreSeries, Integer usuarioClienteUsuarioid) {
         this.id = id;
         this.peso = peso;
         this.fecha = fecha;
@@ -40,7 +44,8 @@ public class ProgresoxEjercicio {
         this.serie = serie;
         this.repeticiones = repeticiones;
         this.comentarios = comentarios;
-        this.usuarioCliente = usuarioCliente;
+        this.descansoEntreSeries = descansoEntreSeries;
+        this.usuarioClienteUsuarioid = usuarioClienteUsuarioid;
     }
 
     public ProgresoxEjercicio() {
@@ -102,11 +107,19 @@ public class ProgresoxEjercicio {
         this.comentarios = comentarios;
     }
 
-    public UsuarioCliente getUsuarioCliente() {
-        return usuarioCliente;
+    public Time getDescansoEntreSeries() {
+        return descansoEntreSeries;
     }
 
-    public void setUsuarioCliente(UsuarioCliente usuarioCliente) {
-        this.usuarioCliente = usuarioCliente;
+    public void setDescansoEntreSeries(Time descansoEntreSeries) {
+        this.descansoEntreSeries = descansoEntreSeries;
+    }
+
+    public Integer getUsuarioClienteUsuarioid() {
+        return usuarioClienteUsuarioid;
+    }
+
+    public void setUsuarioClienteUsuarioid(Integer usuarioClienteUsuarioid) {
+        this.usuarioClienteUsuarioid = usuarioClienteUsuarioid;
     }
 }

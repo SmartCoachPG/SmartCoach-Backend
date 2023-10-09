@@ -22,31 +22,33 @@ public class UsuarioCliente extends Usuario{
     @Column(name = "nivelactividadfisicaid")
     private Integer nivelActividadFisicaid;
 
-
     @Column(name = "objetivorutinaid", nullable = false)
     private Integer objetivoRutinaid;
+
+    @Column(name = "grupo_muscularid", nullable = false)
+    private Integer grupoMuscularid;
 
 
     public UsuarioCliente() {
     }
 
-    public UsuarioCliente(String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, ObjetivoRutina objetivoRutina, NivelActividadFisica nivelActividadFisica) {
+    public UsuarioCliente(String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, Integer grupoMuscularid) {
         this.genero = genero;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.gimnasioid = gimnasioid;
         this.nivelActividadFisicaid = nivelActividadFisicaid;
         this.objetivoRutinaid = objetivoRutinaid;
-
+        this.grupoMuscularid = grupoMuscularid;
     }
 
-    public UsuarioCliente(String nombre, String email, String contrasenna, String fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, ObjetivoRutina objetivoRutina, NivelActividadFisica nivelActividadFisica) {
+    public UsuarioCliente(String nombre, String email, String contrasenna, String fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, Integer grupoMuscularid) {
         super(nombre, email, contrasenna, fotoPerfil, admi);
         this.genero = genero;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.gimnasioid = gimnasioid;
         this.nivelActividadFisicaid = nivelActividadFisicaid;
         this.objetivoRutinaid = objetivoRutinaid;
-
+        this.grupoMuscularid = grupoMuscularid;
     }
 
     public String getGenero() {
@@ -89,5 +91,11 @@ public class UsuarioCliente extends Usuario{
         this.objetivoRutinaid = objetivoRutinaid;
     }
 
+    public Integer getGrupoMuscularid() {
+        return grupoMuscularid;
+    }
 
+    public void setGrupoMuscularid(Integer grupoMuscularid) {
+        this.grupoMuscularid = grupoMuscularid;
+    }
 }

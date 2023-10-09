@@ -18,7 +18,7 @@ public class Usuario {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "contrasenna", nullable = false)
+    @Column(name = "contraseña", nullable = false)
     private String contrasenna;
 
     @Column(name = "fotoperfil")
@@ -96,6 +96,5 @@ public class Usuario {
     public void setAdmi(Integer admi) {
         this.admi = admi;
     }
-
 
 }

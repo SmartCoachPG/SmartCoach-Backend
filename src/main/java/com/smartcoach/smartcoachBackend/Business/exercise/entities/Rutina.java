@@ -14,13 +14,10 @@ public class Rutina {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, length = 255)
-    private String nombre;
-
-    @Column
+    @Column(name = "horaI")
     private Time horaI;
 
-    @Column
+    @Column(name = "horaF")
     private Time horaF;
 
     @Column(nullable = false, length = 255)
@@ -35,9 +32,8 @@ public class Rutina {
     @Column(name = "UsuarioClienteUsuarioid")
     private Integer usuarioClienteId; // Representa el ID de UsuarioCliente sin establecer una relación directa
 
-    public Rutina(int id, String nombre, Time horaI, Time horaF, String dia, Time duracion, int cantEjercicios, Integer usuarioClienteId) {
+    public Rutina(int id, Time horaI, Time horaF, String dia, Time duracion, int cantEjercicios, Integer usuarioClienteId) {
         this.id = id;
-        this.nombre = nombre;
         this.horaI = horaI;
         this.horaF = horaF;
         this.dia = dia;
@@ -55,14 +51,6 @@ public class Rutina {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public Time getHoraI() {
