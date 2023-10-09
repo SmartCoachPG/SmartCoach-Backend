@@ -29,10 +29,13 @@ public class Rutina {
     @Column(nullable = false,name="cantejercicios")
     private int cantEjercicios;
 
-    @Column(name = "UsuarioClienteUsuarioid")
+    @Column(name = "usuarioclienteusuarioid")
     private Integer usuarioClienteId; // Representa el ID de UsuarioCliente sin establecer una relación directa
 
-    public Rutina(int id, Time horaI, Time horaF, String dia, Time duracion, int cantEjercicios, Integer usuarioClienteId) {
+    @Column(name = "grupo_muscularid", nullable = false)
+    private Integer grupoMuscularId;
+
+    public Rutina(int id, Time horaI, Time horaF, String dia, Time duracion, int cantEjercicios, Integer usuarioClienteId, Integer grupoMuscularId) {
         this.id = id;
         this.horaI = horaI;
         this.horaF = horaF;
@@ -40,6 +43,7 @@ public class Rutina {
         this.duracion = duracion;
         this.cantEjercicios = cantEjercicios;
         this.usuarioClienteId = usuarioClienteId;
+        this.grupoMuscularId = grupoMuscularId;
     }
 
     public Rutina(){
@@ -99,6 +103,14 @@ public class Rutina {
 
     public void setUsuarioClienteId(Integer usuarioClienteId) {
         this.usuarioClienteId = usuarioClienteId;
+    }
+
+    public Integer getGrupoMuscularId() {
+        return grupoMuscularId;
+    }
+
+    public void setGrupoMuscularId(Integer grupoMuscularId) {
+        this.grupoMuscularId = grupoMuscularId;
     }
 }
 
