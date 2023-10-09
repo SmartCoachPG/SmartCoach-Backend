@@ -6,27 +6,28 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "equipo")
-public class Equipo {
-
-    @Id
-    @Column(name = "itemid")
-    private Long itemId;
+@PrimaryKeyJoinColumn(name = "itemid", referencedColumnName = "id")
+public class Equipo extends Item {
 
     private String referencia;
 
-    @ManyToOne
-    @JoinColumn(name = "usuarioclienteusuarioid", referencedColumnName = "usuarioid")
-    private UsuarioCliente usuarioCliente;
+    @Column(name="usuarioclienteusuarioid")
+    private Integer usuarioClienteId;
 
-    @ManyToOne
-    @JoinColumn(name = "tipoequipoid", nullable = false)
-    private TipoEquipo tipoEquipo;
+    @Column(name="tipoequipoid")
+    private Integer tipoEquipoId;
 
-    public Equipo(Long itemId, String referencia, UsuarioCliente usuarioCliente, TipoEquipo tipoEquipo) {
-        this.itemId = itemId;
+    public Equipo(Long id, String imagen, String nombre, Long itemId, String referencia, Integer usuarioClienteId, Integer tipoEquipoId) {
+        super(id, imagen, nombre);
         this.referencia = referencia;
-        this.usuarioCliente = usuarioCliente;
-        this.tipoEquipo = tipoEquipo;
+        this.usuarioClienteId = usuarioClienteId;
+        this.tipoEquipoId = tipoEquipoId;
+    }
+
+    public Equipo(Long itemId, String referencia, Integer usuarioClienteId, Integer tipoEquipoId) {
+        this.referencia = referencia;
+        this.usuarioClienteId = usuarioClienteId;
+        this.tipoEquipoId = tipoEquipoId;
     }
 
     public Equipo()
@@ -34,13 +35,6 @@ public class Equipo {
 
     }
 
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
 
     public String getReferencia() {
         return referencia;
@@ -50,19 +44,19 @@ public class Equipo {
         this.referencia = referencia;
     }
 
-    public UsuarioCliente getUsuarioCliente() {
-        return usuarioCliente;
+    public Integer getUsuarioClienteId() {
+        return usuarioClienteId;
     }
 
-    public void setUsuarioCliente(UsuarioCliente usuarioCliente) {
-        this.usuarioCliente = usuarioCliente;
+    public void setUsuarioClienteId(Integer usuarioClienteId) {
+        this.usuarioClienteId = usuarioClienteId;
     }
 
-    public TipoEquipo getTipoEquipo() {
-        return tipoEquipo;
+    public Integer getTipoEquipoId() {
+        return tipoEquipoId;
     }
 
-    public void setTipoEquipo(TipoEquipo tipoEquipo) {
-        this.tipoEquipo = tipoEquipo;
+    public void setTipoEquipoId(Integer tipoEquipoId) {
+        this.tipoEquipoId = tipoEquipoId;
     }
 }

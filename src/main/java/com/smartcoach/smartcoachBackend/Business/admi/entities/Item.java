@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "item")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Item {
 
     @Id
@@ -11,12 +12,12 @@ public class Item {
     private Long id;
 
     @Column
-    private byte[] imagen;
+    private String imagen;
 
     @Column(length = 255, nullable = false)
     private String nombre;
 
-    public Item(Long id, byte[] imagen, String nombre) {
+    public Item(Long id, String imagen, String nombre) {
         this.id = id;
         this.imagen = imagen;
         this.nombre = nombre;
@@ -35,11 +36,11 @@ public class Item {
         this.id = id;
     }
 
-    public byte[] getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(byte[] imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 

@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UsuarioClienteRestriccionMedicaRepository extends JpaRepository<UsuarioClienteRestriccionMedica, UsuarioClienteRestriccionMedicaId> {
+    void deleteByUsuarioClienteUsuarioid(Integer usuarioClienteUsuarioid);
+
 }

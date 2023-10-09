@@ -30,7 +30,7 @@ public class Rutina {
     private int cantEjercicios;
 
     @Column(name = "usuarioclienteusuarioid")
-    private Integer usuarioClienteId; // Representa el ID de UsuarioCliente sin establecer una relación directa
+    private Integer usuarioClienteId;
 
     @Column(name = "grupo_muscularid", nullable = false)
     private Integer grupoMuscularId;

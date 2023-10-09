@@ -29,4 +29,8 @@ public class UsuarioClienteRestriccionMedicaService {
     public void deleteById(UsuarioClienteRestriccionMedicaId id) {
         repository.deleteById(id);
     }
+
+    public void deleteByUsuarioClienteUsuarioid(Integer usuarioClienteUsuarioid) {
+        repository.deleteByUsuarioClienteUsuarioid(usuarioClienteUsuarioid);
+    }
 }

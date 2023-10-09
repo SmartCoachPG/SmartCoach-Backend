@@ -14,6 +14,9 @@ public class PerfilMedicoService {
     @Autowired
     private PerfilMedicoRepository perfilMedicoRepository;
 
+    @Autowired
+    private ValorService valorService;
+
     public List<PerfilMedico> findAll() {
         return perfilMedicoRepository.findAll();
     }
@@ -27,6 +30,16 @@ public class PerfilMedicoService {
     }
 
     public void deleteById(int id) {
+        valorService.deleteByPerfilMedicoid(id);
         perfilMedicoRepository.deleteById(id);
+    }
+
+    public void deleteByUsuarioClienteId(Integer usuarioClienteId)
+    {
+        List<PerfilMedico> perfilesMedicos = perfilMedicoRepository.findByUsuarioClienteId(usuarioClienteId);
+        for (PerfilMedico perfilMedico : perfilesMedicos) {
+            valorService.deleteByPerfilMedicoid(perfilMedico.getId());
+        }
+        perfilMedicoRepository.deleteByUsuarioClienteId(usuarioClienteId);
     }
 }

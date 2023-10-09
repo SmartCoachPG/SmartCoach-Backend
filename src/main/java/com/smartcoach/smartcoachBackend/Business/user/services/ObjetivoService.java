@@ -28,4 +28,9 @@ public class ObjetivoService {
     public void deleteById(Long id) {
         objetivoRepository.deleteById(id);
     }
+
+    public void deleteByUsuarioClienteId(int id)
+    {
+        objetivoRepository.deleteByUsuarioClienteId(id);
+    }
 }

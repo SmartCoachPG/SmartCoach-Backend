@@ -33,10 +33,9 @@ public class ProgresoxEjercicio {
     private Time descansoEntreSeries;
 
     @Column(name = "usuarioclienteusuarioid", nullable = false)
-    private Integer usuarioClienteUsuarioid;
+    private Integer usuarioClienteId;
 
-
-    public ProgresoxEjercicio(Long id, Integer peso, Date fecha, Integer valoracion, Integer serie, Integer repeticiones, String comentarios, Time descansoEntreSeries, Integer usuarioClienteUsuarioid) {
+    public ProgresoxEjercicio(Long id, Integer peso, Date fecha, Integer valoracion, Integer serie, Integer repeticiones, String comentarios, Time descansoEntreSeries, Integer usuarioClienteId) {
         this.id = id;
         this.peso = peso;
         this.fecha = fecha;
@@ -45,7 +44,7 @@ public class ProgresoxEjercicio {
         this.repeticiones = repeticiones;
         this.comentarios = comentarios;
         this.descansoEntreSeries = descansoEntreSeries;
-        this.usuarioClienteUsuarioid = usuarioClienteUsuarioid;
+        this.usuarioClienteId = usuarioClienteId;
     }
 
     public ProgresoxEjercicio() {
@@ -115,11 +114,11 @@ public class ProgresoxEjercicio {
         this.descansoEntreSeries = descansoEntreSeries;
     }
 
-    public Integer getUsuarioClienteUsuarioid() {
-        return usuarioClienteUsuarioid;
+    public Integer getUsuarioClienteId() {
+        return usuarioClienteId;
     }
 
-    public void setUsuarioClienteUsuarioid(Integer usuarioClienteUsuarioid) {
-        this.usuarioClienteUsuarioid = usuarioClienteUsuarioid;
+    public void setUsuarioClienteId(Integer usuarioClienteId) {
+        this.usuarioClienteId = usuarioClienteId;
     }
 }

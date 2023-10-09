@@ -1,10 +1,13 @@
 package com.smartcoach.smartcoachBackend.Business.user.controllers;
+import com.smartcoach.smartcoachBackend.Business.admi.services.EquipoService;
+import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaService;
 import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioCliente;
-import com.smartcoach.smartcoachBackend.Business.user.services.UsuarioClienteService;
+import com.smartcoach.smartcoachBackend.Business.user.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -13,6 +16,19 @@ public class UsuarioClienteController {
 
     @Autowired
     private UsuarioClienteService usuarioClienteService;
+    @Autowired
+    private RutinaService rutinaService;
+    @Autowired
+    private ProgresoxEjercicioService progresoxEjercicioService;
+    @Autowired
+    private ObjetivoService objetivoService;
+    @Autowired
+    private UsuarioClienteRestriccionMedicaService USRMService;
+    @Autowired
+    private PerfilMedicoService perfilMedicoService;
+    @Autowired
+    private EquipoService equipoService;
+
 
     @PostMapping("/crear")
     public ResponseEntity<UsuarioCliente> create(@RequestBody UsuarioCliente usuarioCliente) {
@@ -45,7 +61,14 @@ public class UsuarioClienteController {
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<Void> delete(@PathVariable Long id) {
+        rutinaService.deleteByUsuarioClienteId(id.intValue());
+        progresoxEjercicioService.deleteByUsuarioClienteId(id.intValue());
+        objetivoService.deleteByUsuarioClienteId(id.intValue());
+        USRMService.deleteByUsuarioClienteUsuarioid(id.intValue());
+        perfilMedicoService.deleteByUsuarioClienteId(id.intValue());
+        equipoService.deleteByUsuarioClienteId(id.intValue());
         usuarioClienteService.deteleById(id);
         return ResponseEntity.noContent().build();
     }

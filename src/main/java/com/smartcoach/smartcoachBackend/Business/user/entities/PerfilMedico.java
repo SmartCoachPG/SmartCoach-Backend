@@ -21,14 +21,14 @@
 
     
         @Column(name = "usuarioclienteusuarioid", nullable = true)
-        private Integer usuarioClienteUsuarioid;
+        private Integer usuarioClienteId;
     
 
     
         public PerfilMedico(int id, Date fecha, Integer usuarioClienteUsuarioid, Set<Valor> valores) {
             this.id = id;
             this.fecha = fecha;
-            this.usuarioClienteUsuarioid = usuarioClienteUsuarioid;
+            this.usuarioClienteId = usuarioClienteUsuarioid;
         }
     
         public PerfilMedico()
@@ -51,14 +51,12 @@
         public void setFecha(Date fecha) {
             this.fecha = fecha;
         }
-    
 
-    
-        public Integer getUsuarioClienteUsuarioid() {
-            return usuarioClienteUsuarioid;
+        public Integer getUsuarioClienteId() {
+            return usuarioClienteId;
         }
-    
-        public void setUsuarioClienteUsuarioid(Integer usuarioClienteUsuarioid) {
-            this.usuarioClienteUsuarioid = usuarioClienteUsuarioid;
+
+        public void setUsuarioClienteId(Integer usuarioClienteId) {
+            this.usuarioClienteId = usuarioClienteId;
         }
     }

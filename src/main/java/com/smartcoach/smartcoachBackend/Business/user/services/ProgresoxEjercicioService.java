@@ -25,6 +25,10 @@ public class ProgresoxEjercicioService {
         return progresoxEjercicioRepository.save(progresoxEjercicio);
     }
 
+    public void deleteByUsuarioClienteId(Integer usuarioClienteId)
+    {
+        progresoxEjercicioRepository.deleteByUsuarioClienteId(usuarioClienteId);
+    }
     public void deleteById(Long id) {
         progresoxEjercicioRepository.deleteById(id);
     }

@@ -5,6 +5,7 @@ import com.smartcoach.smartcoachBackend.Persistence.exercise.RutinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -20,6 +21,13 @@ public class RutinaService {
     public Rutina findById(int id) {
         return rutinaRepository.findById(id).orElse(null);
     }
+
+    @Transactional
+    public void deleteByUsuarioClienteId(int usuarioClienteId)
+    {
+        rutinaRepository.deleteByUsuarioClienteId(usuarioClienteId);
+    }
+
 
     public Rutina save(Rutina rutina) {
         return rutinaRepository.save(rutina);

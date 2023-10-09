@@ -29,4 +29,9 @@ public class ValorService {
     public void deleteById(int id) {
         valorRepository.deleteById(id);
     }
+
+    public void deleteByPerfilMedicoid(int perfilMedicoid)
+    {
+        valorRepository.deleteByPerfilMedicoid(perfilMedicoid);
+    }
 }

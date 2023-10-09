@@ -25,18 +25,17 @@ public class Objetivo {
 
     private String descripcionObjetivo;
 
-    @ManyToOne
-    @JoinColumn(name = "usuarioclienteusuarioid", nullable = false)
-    private UsuarioCliente usuarioCliente;
+    @Column(name="usuarioclienteusuarioid",nullable = false)
+    private Integer usuarioClienteId;
 
-    public Objetivo(Long id, String titulo, LocalDate fechaInicio, LocalDate fechaFinal, Integer estado, String descripcionObjetivo, UsuarioCliente usuarioCliente) {
+    public Objetivo(Long id, String titulo, LocalDate fechaInicio, LocalDate fechaFinal, Integer estado, String descripcionObjetivo, Integer usuarioClienteId) {
         this.id = id;
         this.titulo = titulo;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
         this.estado = estado;
         this.descripcionObjetivo = descripcionObjetivo;
-        this.usuarioCliente = usuarioCliente;
+        this.usuarioClienteId = usuarioClienteId;
     }
 
     public Objetivo()
@@ -92,11 +91,11 @@ public class Objetivo {
         this.descripcionObjetivo = descripcionObjetivo;
     }
 
-    public UsuarioCliente getUsuarioCliente() {
-        return usuarioCliente;
+    public Integer getUsuarioClienteId() {
+        return usuarioClienteId;
     }
 
-    public void setUsuarioCliente(UsuarioCliente usuarioCliente) {
-        this.usuarioCliente = usuarioCliente;
+    public void setUsuarioClienteId(Integer usuarioClienteId) {
+        this.usuarioClienteId = usuarioClienteId;
     }
 }

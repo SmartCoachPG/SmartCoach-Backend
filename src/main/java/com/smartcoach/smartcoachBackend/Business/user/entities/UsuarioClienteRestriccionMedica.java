@@ -24,7 +24,6 @@ public class UsuarioClienteRestriccionMedica {
     {
 
     }
-
     public Integer getUsuarioClienteUsuarioid() {
         return usuarioClienteUsuarioid;
     }
