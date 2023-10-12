@@ -112,5 +112,19 @@ public class Rutina {
     public void setGrupoMuscularId(Integer grupoMuscularId) {
         this.grupoMuscularId = grupoMuscularId;
     }
+
+    @Override
+    public String toString() {
+        return "Rutina{" +
+                "id=" + id +
+                ", horaI=" + horaI +
+                ", horaF=" + horaF +
+                ", dia='" + dia + '\'' +
+                ", duracion=" + duracion +
+                ", cantEjercicios=" + cantEjercicios +
+                ", usuarioClienteId=" + usuarioClienteId +
+                ", grupoMuscularId=" + grupoMuscularId +
+                '}';
+    }
 }
 

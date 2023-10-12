@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuariocliente")
@@ -72,4 +73,21 @@ public class UsuarioClienteController {
         usuarioClienteService.deteleById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/crearRutina/{id}")
+    public ResponseEntity<Void> crearRutina(@PathVariable Long id)
+    {
+        // 0. Get usuario
+        Optional<UsuarioCliente> cliente = usuarioClienteService.findById(id);
+        // 1.Asignar grupoMuscular a Rutina
+        rutinaService.asignarGM(id.intValue(),cliente.get().getGrupoMuscularid());
+
+        // 2.Opciones ejercicios
+
+        // 3.Aplicar objetivo Rutina y Nivel actividad fisica
+
+
+        return ResponseEntity.noContent().build();
+    }
+
 }
