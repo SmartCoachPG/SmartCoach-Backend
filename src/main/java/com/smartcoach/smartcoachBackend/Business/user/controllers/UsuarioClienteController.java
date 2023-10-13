@@ -126,18 +126,23 @@ public class UsuarioClienteController {
         Map<Integer,List<Integer>> gmE = ejercicioGruposMusculares(listaEjercicios);
         // 7. Asignar ejercicios a rutina
         int cont=0;
+        Set<Integer> asignados = new HashSet<>();
         for (Rutina rutina : listaRutinas)
         {
             List<Integer> ejercicios = gmE.get(rutina.getGrupoMuscularId().intValue());
             if (ejercicios != null && !ejercicios.isEmpty()) {
                 for (Integer ej : ejercicios) {
                     rutinaEjercicioService.saveRutinaEjercicio(rutina.getId(), ej);
+                    asignados.add(ej);
                     cont++;
                     if (cont == 4) break;
                 }
                 cont = 0;
             }
         }
+
+        // 8. Asignar progresoXEjercicio
+
 
 
         return ResponseEntity.noContent().build();
