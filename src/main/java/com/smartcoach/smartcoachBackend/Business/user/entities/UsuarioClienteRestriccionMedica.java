@@ -9,14 +9,14 @@ public class UsuarioClienteRestriccionMedica {
 
     @Id
     @Column(name = "usuarioclienteusuarioid")
-    private Integer usuarioClienteUsuarioid;
+    private Integer usuarioClienteid;
 
     @Id
     @Column(name = "restriccionmedicaid")
     private Integer restriccionMedicaid;
 
     public UsuarioClienteRestriccionMedica(Integer usuarioClienteUsuarioid, Integer restriccionMedicaid) {
-        this.usuarioClienteUsuarioid = usuarioClienteUsuarioid;
+        this.usuarioClienteid = usuarioClienteUsuarioid;
         this.restriccionMedicaid = restriccionMedicaid;
     }
 
@@ -24,12 +24,13 @@ public class UsuarioClienteRestriccionMedica {
     {
 
     }
-    public Integer getUsuarioClienteUsuarioid() {
-        return usuarioClienteUsuarioid;
+
+    public Integer getUsuarioClienteId() {
+        return usuarioClienteid;
     }
 
-    public void setUsuarioClienteUsuarioid(Integer usuarioClienteUsuarioid) {
-        this.usuarioClienteUsuarioid = usuarioClienteUsuarioid;
+    public void setUsuarioClienteId(Integer usuarioClienteId) {
+        this.usuarioClienteid = usuarioClienteId;
     }
 
     public Integer getRestriccionMedicaid() {

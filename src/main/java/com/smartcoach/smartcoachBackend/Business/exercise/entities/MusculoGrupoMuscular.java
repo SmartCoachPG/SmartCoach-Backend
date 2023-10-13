@@ -24,7 +24,6 @@ public class MusculoGrupoMuscular {
     public MusculoGrupoMuscular(){
 
     }
-
     public Integer getMusculoId() {
         return musculoId;
     }

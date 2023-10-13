@@ -2,7 +2,7 @@ package com.smartcoach.smartcoachBackend.Business.exercise.entities;
 
 import java.io.Serializable;
 
-class MusculoGrupoMuscularId implements Serializable {
+public class MusculoGrupoMuscularId implements Serializable {
     private Integer musculoId;
     private Integer grupoMuscularId;
 

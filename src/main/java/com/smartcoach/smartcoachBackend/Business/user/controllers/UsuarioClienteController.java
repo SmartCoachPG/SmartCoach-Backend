@@ -2,19 +2,20 @@ package com.smartcoach.smartcoachBackend.Business.user.controllers;
 import com.smartcoach.smartcoachBackend.Business.admi.entities.Equipo;
 import com.smartcoach.smartcoachBackend.Business.admi.entities.Item;
 import com.smartcoach.smartcoachBackend.Business.admi.services.EquipoService;
-import com.smartcoach.smartcoachBackend.Business.exercise.entities.Ejercicio;
+import com.smartcoach.smartcoachBackend.Business.exercise.entities.*;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.EjercicioService;
+import com.smartcoach.smartcoachBackend.Business.exercise.services.RestriccionMedicaEjercicioService;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaService;
 import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioCliente;
 import com.smartcoach.smartcoachBackend.Business.user.services.*;
+import com.smartcoach.smartcoachBackend.Persistence.exercise.MusculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/usuariocliente")
@@ -36,6 +37,12 @@ public class UsuarioClienteController {
     private EquipoService equipoService;
     @Autowired
     private EjercicioService ejercicioService;
+    @Autowired
+    private UsuarioClienteRestriccionMedicaService usuarioClienteRestriccionMedicaService;
+    @Autowired
+    private RestriccionMedicaEjercicioService restriccionMedicaEjercicioService;
+    @Autowired
+    private MusculoRepository musculoRepository;
 
 
     @PostMapping("/crear")
@@ -87,7 +94,7 @@ public class UsuarioClienteController {
         // 0. Get usuario
         Optional<UsuarioCliente> cliente = usuarioClienteService.findById(id);
         // 1.Asignar grupoMuscular a Rutina
-        rutinaService.asignarGM(id.intValue(),cliente.get().getGrupoMuscularid());
+        List<Rutina> listaRutinas = rutinaService.asignarGM(id.intValue(),cliente.get().getGrupoMuscularid());
         // 3.Consultar equipo gym
         List<Equipo> equipoD = new ArrayList<>();
         if(cliente.get().getGimnasioid()!=null)
@@ -103,17 +110,47 @@ public class UsuarioClienteController {
         {
             listaEjercicios.addAll(ejercicioService.findEjerciciosByEquipoItemId(equipo.getId().intValue()));
         }
-        for(Ejercicio ejercicio: listaEjercicios)
-        {
-            System.out.println(ejercicio.toString());
-        }
         //6.Filtrar ejercicios por limitacion fisica
+        List <Integer> restriccionesM = usuarioClienteRestriccionMedicaService.findRestriccionesByUsuarioClienteId(cliente.get().getId());
+        List<Integer> idEjerciciosX = new ArrayList<>();
+        for(Integer restriccion : restriccionesM)
+        {
+            idEjerciciosX.addAll(restriccionMedicaEjercicioService.findEjerciciosByRestriccionMedicaId((long)restriccion));
+        }
+        listaEjercicios.removeIf(ejercicio -> idEjerciciosX.contains(ejercicio.getId().intValue()));
 
-
-        // 3.Aplicar objetivo Rutina y Nivel actividad fisica
+        // 7.Asignar ejercicios a rutina
+        Map<Integer,List<Integer>> gmE = ejercicioGruposMusculares(listaEjercicios);
+        System.out.println(gmE);
+        // 8.Crear progresox ejercicio
 
 
         return ResponseEntity.noContent().build();
     }
+
+    public Map<Integer,List<Integer>> ejercicioGruposMusculares(List<Ejercicio> listaE)
+    {
+        // idGrupoMuscular - idEjercicios
+        Map<Integer, List<Integer>> retorno = new HashMap<>();
+        for (Ejercicio ejercicio : listaE) {
+            List<Integer> temp = ejercicioService.findGrupoMuscular(ejercicio.getId().intValue());
+            for (Integer gm : temp) {
+                List<Integer> temp2 = retorno.getOrDefault(gm, new ArrayList<>());
+                temp2.add(ejercicio.getId().intValue());
+                retorno.put(gm.intValue(), temp2);
+            }
+        }
+
+        // Eliminar duplicados
+        for (Map.Entry<Integer, List<Integer>> entry : retorno.entrySet()) {
+            List<Integer> listWithoutDuplicates = new ArrayList<>(new HashSet<>(entry.getValue()));
+            Collections.sort(listWithoutDuplicates);
+            entry.setValue(listWithoutDuplicates);
+        }
+
+        return retorno;
+    }
+
+
 
 }

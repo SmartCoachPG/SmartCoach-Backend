@@ -5,8 +5,11 @@ import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioClienteRes
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UsuarioClienteRestriccionMedicaRepository extends JpaRepository<UsuarioClienteRestriccionMedica, UsuarioClienteRestriccionMedicaId> {
-    void deleteByUsuarioClienteUsuarioid(Integer usuarioClienteUsuarioid);
+    void deleteByUsuarioClienteid(Integer usuarioClienteUsuarioid);
+    List<UsuarioClienteRestriccionMedica> findByUsuarioClienteid(Integer usuarioClienteId);
 
 }

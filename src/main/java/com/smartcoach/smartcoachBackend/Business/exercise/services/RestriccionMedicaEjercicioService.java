@@ -6,6 +6,7 @@ import com.smartcoach.smartcoachBackend.Persistence.exercise.RestriccionMedicaEj
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,6 +29,15 @@ public class RestriccionMedicaEjercicioService {
 
     public void deleteById(RestriccionMedicaEjercicioId id) {
         repository.deleteById(id);
+    }
+
+    public List<Integer> findEjerciciosByRestriccionMedicaId(Long restriccionMedicaId) {
+        List<RestriccionMedicaEjercicio> restriccionMedicaEjercicios = repository.findByRestriccionMedicaId(restriccionMedicaId.intValue());
+        List<Integer> ejercicioIds = new ArrayList<>();
+        for (RestriccionMedicaEjercicio rme : restriccionMedicaEjercicios) {
+            ejercicioIds.add(rme.getEjercicioId());
+        }
+        return ejercicioIds;
     }
 }
 
