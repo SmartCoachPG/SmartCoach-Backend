@@ -29,4 +29,11 @@ public class RutinaEjercicioService {
     public void deleteById(RutinaEjercicioId id) {
         repository.deleteById(id);
     }
+
+    public RutinaEjercicio saveRutinaEjercicio(Integer rutinaId, Integer ejercicioid) {
+        RutinaEjercicio rutinaEjercicio = new RutinaEjercicio();
+        rutinaEjercicio.setRutinaId(rutinaId);
+        rutinaEjercicio.setEjercicioid(ejercicioid);
+        return repository.save(rutinaEjercicio);
+    }
 }

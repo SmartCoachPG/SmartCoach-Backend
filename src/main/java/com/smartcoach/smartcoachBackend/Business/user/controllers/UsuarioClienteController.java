@@ -5,6 +5,7 @@ import com.smartcoach.smartcoachBackend.Business.admi.services.EquipoService;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.*;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.EjercicioService;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.RestriccionMedicaEjercicioService;
+import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaEjercicioService;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaService;
 import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioCliente;
 import com.smartcoach.smartcoachBackend.Business.user.services.*;
@@ -43,6 +44,8 @@ public class UsuarioClienteController {
     private RestriccionMedicaEjercicioService restriccionMedicaEjercicioService;
     @Autowired
     private MusculoRepository musculoRepository;
+    @Autowired
+    private RutinaEjercicioService rutinaEjercicioService;
 
 
     @PostMapping("/crear")
@@ -95,22 +98,22 @@ public class UsuarioClienteController {
         Optional<UsuarioCliente> cliente = usuarioClienteService.findById(id);
         // 1.Asignar grupoMuscular a Rutina
         List<Rutina> listaRutinas = rutinaService.asignarGM(id.intValue(),cliente.get().getGrupoMuscularid());
-        // 3.Consultar equipo gym
+        // 2.Consultar equipo gym
         List<Equipo> equipoD = new ArrayList<>();
         if(cliente.get().getGimnasioid()!=null)
         {
             equipoD = equipoService.findEquiposByGimnasioId(cliente.get().getGimnasioid());
         }
-        // 4.Consultar equipo personal
+        // 3.Consultar equipo personal
         equipoD.addAll(equipoService.findEquiposByUsuarioId(cliente.get().getId().intValue()));
         equipoD.add(equipoService.getById((long)15));
-        //5. Filtrar ejercicios por equipo total
+        //4. Filtrar ejercicios por equipo total
         List<Ejercicio> listaEjercicios = new ArrayList<>();
         for(Equipo equipo: equipoD)
         {
             listaEjercicios.addAll(ejercicioService.findEjerciciosByEquipoItemId(equipo.getId().intValue()));
         }
-        //6.Filtrar ejercicios por limitacion fisica
+        //5.Filtrar ejercicios por limitacion fisica
         List <Integer> restriccionesM = usuarioClienteRestriccionMedicaService.findRestriccionesByUsuarioClienteId(cliente.get().getId());
         List<Integer> idEjerciciosX = new ArrayList<>();
         for(Integer restriccion : restriccionesM)
@@ -119,10 +122,22 @@ public class UsuarioClienteController {
         }
         listaEjercicios.removeIf(ejercicio -> idEjerciciosX.contains(ejercicio.getId().intValue()));
 
-        // 7.Asignar ejercicios a rutina
+        // 6.Listar ejercicios por grupo muscular
         Map<Integer,List<Integer>> gmE = ejercicioGruposMusculares(listaEjercicios);
-        System.out.println(gmE);
-        // 8.Crear progresox ejercicio
+        // 7. Asignar ejercicios a rutina
+        int cont=0;
+        for (Rutina rutina : listaRutinas)
+        {
+            List<Integer> ejercicios = gmE.get(rutina.getGrupoMuscularId().intValue());
+            if (ejercicios != null && !ejercicios.isEmpty()) {
+                for (Integer ej : ejercicios) {
+                    rutinaEjercicioService.saveRutinaEjercicio(rutina.getId(), ej);
+                    cont++;
+                    if (cont == 4) break;
+                }
+                cont = 0;
+            }
+        }
 
 
         return ResponseEntity.noContent().build();
