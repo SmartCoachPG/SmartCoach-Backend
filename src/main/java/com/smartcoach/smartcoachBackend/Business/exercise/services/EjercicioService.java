@@ -5,6 +5,9 @@ import com.smartcoach.smartcoachBackend.Persistence.exercise.EjercicioRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Service
@@ -28,4 +31,13 @@ public class EjercicioService {
     public void deleteById(Long id) {
         ejercicioRepository.deleteById(id);
     }
+
+    @PersistenceContext
+    EntityManager em;
+
+    public List<Ejercicio> findEjerciciosByEquipoItemId(int equipoItemId) {
+        return ejercicioRepository.findEjerciciosByEquipoItemId(equipoItemId);
+    }
+
+
 }

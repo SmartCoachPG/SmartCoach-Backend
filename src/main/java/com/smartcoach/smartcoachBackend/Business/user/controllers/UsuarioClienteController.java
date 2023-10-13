@@ -1,5 +1,9 @@
 package com.smartcoach.smartcoachBackend.Business.user.controllers;
+import com.smartcoach.smartcoachBackend.Business.admi.entities.Equipo;
+import com.smartcoach.smartcoachBackend.Business.admi.entities.Item;
 import com.smartcoach.smartcoachBackend.Business.admi.services.EquipoService;
+import com.smartcoach.smartcoachBackend.Business.exercise.entities.Ejercicio;
+import com.smartcoach.smartcoachBackend.Business.exercise.services.EjercicioService;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaService;
 import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioCliente;
 import com.smartcoach.smartcoachBackend.Business.user.services.*;
@@ -8,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +34,8 @@ public class UsuarioClienteController {
     private PerfilMedicoService perfilMedicoService;
     @Autowired
     private EquipoService equipoService;
+    @Autowired
+    private EjercicioService ejercicioService;
 
 
     @PostMapping("/crear")
@@ -81,8 +88,27 @@ public class UsuarioClienteController {
         Optional<UsuarioCliente> cliente = usuarioClienteService.findById(id);
         // 1.Asignar grupoMuscular a Rutina
         rutinaService.asignarGM(id.intValue(),cliente.get().getGrupoMuscularid());
+        // 3.Consultar equipo gym
+        List<Equipo> equipoD = new ArrayList<>();
+        if(cliente.get().getGimnasioid()!=null)
+        {
+            equipoD = equipoService.findEquiposByGimnasioId(cliente.get().getGimnasioid());
+        }
+        // 4.Consultar equipo personal
+        equipoD.addAll(equipoService.findEquiposByUsuarioId(cliente.get().getId().intValue()));
+        equipoD.add(equipoService.getById((long)15));
+        //5. Filtrar ejercicios por equipo total
+        List<Ejercicio> listaEjercicios = new ArrayList<>();
+        for(Equipo equipo: equipoD)
+        {
+            listaEjercicios.addAll(ejercicioService.findEjerciciosByEquipoItemId(equipo.getId().intValue()));
+        }
+        for(Ejercicio ejercicio: listaEjercicios)
+        {
+            System.out.println(ejercicio.toString());
+        }
+        //6.Filtrar ejercicios por limitacion fisica
 
-        // 2.Opciones ejercicios
 
         // 3.Aplicar objetivo Rutina y Nivel actividad fisica
 

@@ -15,15 +15,6 @@ public class GimnasioItem {
     @Column(name = "itemid")
     private int itemid;
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "Gimnasioid", referencedColumnName = "id", insertable = false, updatable = false)
-    private Gimnasio gimnasio;
-
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "Itemid", referencedColumnName = "id", insertable = false, updatable = false)
-    private Item item;
 
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
@@ -62,19 +53,4 @@ public class GimnasioItem {
         this.cantidad = cantidad;
     }
 
-    public Gimnasio getGimnasio() {
-        return gimnasio;
-    }
-
-    public void setGimnasio(Gimnasio gimnasio) {
-        this.gimnasio = gimnasio;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
 }

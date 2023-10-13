@@ -53,8 +53,6 @@ public class RutinaService {
         rutinas = ordernar(rutinas);
         List<GrupoMuscular> grupoMusculares = grupoMuscularRepository.findAll();
         Optional<GrupoMuscular> grupoMuscularO = grupoMuscularRepository.findById((long) idGrupoM);
-        System.out.println("Buscado ID: " + idGrupoM + ", Retornado ID: " + grupoMuscularO.get().getId());
-
 
         for (GrupoMuscular grupoMuscular : grupoMusculares) {
             contadorGM.put(grupoMuscular.getId().intValue(), (long) 0);
@@ -83,7 +81,6 @@ public class RutinaService {
                 else band--;
             }
         }
-        System.out.println(rutinas);
         rutinaRepository.saveAll(rutinas);
         return rutinas;
 
@@ -92,19 +89,19 @@ public class RutinaService {
     public int diaANumero(String dia) {
         switch (dia.toLowerCase()) {
             case "lunes":
-                return 1;
+                return 0;
             case "martes":
-                return 2;
+                return 1;
             case "miércoles":
-                return 3;
+                return 2;
             case "jueves":
-                return 4;
+                return 3;
             case "viernes":
-                return 5;
+                return 4;
             case "sábado":
-                return 6;
+                return 5;
             case "domingo":
-                return 7;
+                return 6;
             default:
                 return -1; // Valor para días no válidos
         }
@@ -138,7 +135,7 @@ public class RutinaService {
         for(Rutina rutina : listaR)
         {
             posi = diaANumero(rutina.getDia());
-            temp.set(posi-1,rutina);
+            temp.set(posi,rutina);
         }
 
         for(Rutina rutina2 : temp)

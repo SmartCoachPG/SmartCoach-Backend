@@ -17,19 +17,10 @@ public class EquipoEjercicio {
     @Column(name = "ejercicioid")
     private int ejercicioid;
 
-    @ManyToOne
-    @JoinColumn(name = "equipoitemid", insertable = false, updatable = false)
-    private Equipo equipo;
-
-    @ManyToOne
-    @JoinColumn(name = "ejercicioid", insertable = false, updatable = false)
-    private Ejercicio ejercicio;
 
     public EquipoEjercicio(int equipoItemid, int ejercicioid, Equipo equipo, Ejercicio ejercicio) {
         this.equipoItemid = equipoItemid;
         this.ejercicioid = ejercicioid;
-        this.equipo = equipo;
-        this.ejercicio = ejercicio;
     }
 
     public EquipoEjercicio()
@@ -53,19 +44,5 @@ public class EquipoEjercicio {
         this.ejercicioid = ejercicioid;
     }
 
-    public Equipo getEquipo() {
-        return equipo;
-    }
 
-    public void setEquipo(Equipo equipo) {
-        this.equipo = equipo;
-    }
-
-    public Ejercicio getEjercicio() {
-        return ejercicio;
-    }
-
-    public void setEjercicio(Ejercicio ejercicio) {
-        this.ejercicio = ejercicio;
-    }
 }

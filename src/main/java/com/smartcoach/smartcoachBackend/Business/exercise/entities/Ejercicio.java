@@ -66,4 +66,13 @@ public class Ejercicio {
         this.instruccionRespiracion = instruccionRespiracion;
     }
 
+    @Override
+    public String toString() {
+        return "Ejercicio{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", instruccionEjecucion='" + instruccionEjecucion + '\'' +
+                ", instruccionRespiracion='" + instruccionRespiracion + '\'' +
+                '}';
+    }
 }
