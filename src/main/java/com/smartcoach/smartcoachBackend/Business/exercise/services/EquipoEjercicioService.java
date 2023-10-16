@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EquipoEjercicioService {
@@ -29,6 +30,16 @@ public class EquipoEjercicioService {
 
     public void deleteById(EquipoEjercicioId id) {
         repository.deleteById(id);
+    }
+
+    public List<Integer> findEquipoItemidsByEjercicioid(int ejercicioid) {
+        List<EquipoEjercicio> equipoEjercicios = repository.findByEjercicioid(ejercicioid);
+
+        List<Integer> equipoItemids = equipoEjercicios.stream()
+                .map(EquipoEjercicio::getEquipoItemid)
+                .collect(Collectors.toList());
+
+        return equipoItemids;
     }
 }
 

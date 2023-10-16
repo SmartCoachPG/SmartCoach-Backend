@@ -5,4 +5,6 @@ import com.smartcoach.smartcoachBackend.Business.exercise.entities.RutinaEjercic
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RutinaEjercicioRepository extends JpaRepository<RutinaEjercicio, RutinaEjercicioId> {
+
+    void deleteByRutinaId(Integer rutinaId);
 }

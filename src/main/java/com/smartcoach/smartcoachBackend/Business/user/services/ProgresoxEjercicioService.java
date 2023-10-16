@@ -32,4 +32,8 @@ public class ProgresoxEjercicioService {
     public void deleteById(Long id) {
         progresoxEjercicioRepository.deleteById(id);
     }
+
+    public List<ProgresoxEjercicio> findByUsuarioClienteId(Integer usuarioClienteId) {
+        return progresoxEjercicioRepository.findByUsuarioClienteId(usuarioClienteId);
+    }
 }

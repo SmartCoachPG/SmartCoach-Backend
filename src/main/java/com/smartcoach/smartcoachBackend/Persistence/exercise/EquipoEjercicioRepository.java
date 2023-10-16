@@ -5,6 +5,10 @@ import com.smartcoach.smartcoachBackend.Business.exercise.entities.EquipoEjercic
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface EquipoEjercicioRepository extends JpaRepository<EquipoEjercicio, EquipoEjercicioId> {
+
+    List<EquipoEjercicio> findByEjercicioid(int ejercicioid);
 }

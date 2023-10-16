@@ -29,4 +29,8 @@ public class EjercicioProgresoxEjercicioService {
     public void deleteById(EjercicioProgresoxEjercicioId id) {
         repository.deleteById(id);
     }
+
+    public void deleteByProgresoxEjercicioId(Integer progresoxEjercicioId) {
+        repository.deleteByProgresoxEjercicioId(progresoxEjercicioId);
+    }
 }

@@ -36,4 +36,9 @@ public class RutinaEjercicioService {
         rutinaEjercicio.setEjercicioid(ejercicioid);
         return repository.save(rutinaEjercicio);
     }
+
+    public void deleteByRutinaId(Integer rutinaId) {
+        repository.deleteByRutinaId(rutinaId);
+    }
+
 }

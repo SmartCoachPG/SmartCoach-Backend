@@ -5,4 +5,7 @@ import com.smartcoach.smartcoachBackend.Business.exercise.entities.EjercicioProg
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EjercicioProgresoxEjercicioRepository extends JpaRepository<EjercicioProgresoxEjercicio, EjercicioProgresoxEjercicioId> {
+
+    void deleteByProgresoxEjercicioId(Integer progresoxEjercicioId);
+
 }

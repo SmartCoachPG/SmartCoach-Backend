@@ -3,10 +3,8 @@ import com.smartcoach.smartcoachBackend.Business.admi.entities.Equipo;
 import com.smartcoach.smartcoachBackend.Business.admi.entities.Item;
 import com.smartcoach.smartcoachBackend.Business.admi.services.EquipoService;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.*;
-import com.smartcoach.smartcoachBackend.Business.exercise.services.EjercicioService;
-import com.smartcoach.smartcoachBackend.Business.exercise.services.RestriccionMedicaEjercicioService;
-import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaEjercicioService;
-import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaService;
+import com.smartcoach.smartcoachBackend.Business.exercise.services.*;
+import com.smartcoach.smartcoachBackend.Business.user.entities.ProgresoxEjercicio;
 import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioCliente;
 import com.smartcoach.smartcoachBackend.Business.user.services.*;
 import com.smartcoach.smartcoachBackend.Persistence.exercise.MusculoRepository;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
+import java.sql.Time;
 import java.util.*;
 
 @RestController
@@ -46,6 +45,10 @@ public class UsuarioClienteController {
     private MusculoRepository musculoRepository;
     @Autowired
     private RutinaEjercicioService rutinaEjercicioService;
+    @Autowired
+    private EquipoEjercicioService equipoEjercicioService;
+    @Autowired
+    private EjercicioProgresoxEjercicioService ejercicioProgresoxEjercicioService;
 
 
     @PostMapping("/crear")
@@ -81,7 +84,18 @@ public class UsuarioClienteController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<Void> delete(@PathVariable Long id) {
+
+        List<Rutina> rutinasUsur = rutinaService.getByUsuarioClienteId(id.intValue());
+        for(Rutina rutina : rutinasUsur)
+        {
+            rutinaEjercicioService.deleteByRutinaId(rutina.getId());
+        }
         rutinaService.deleteByUsuarioClienteId(id.intValue());
+        List<ProgresoxEjercicio> progresoxEjercicios = progresoxEjercicioService.findByUsuarioClienteId(id.intValue());
+        for(ProgresoxEjercicio progreso : progresoxEjercicios)
+        {
+            ejercicioProgresoxEjercicioService.deleteByProgresoxEjercicioId(progreso.getId().intValue());
+        }
         progresoxEjercicioService.deleteByUsuarioClienteId(id.intValue());
         objetivoService.deleteByUsuarioClienteId(id.intValue());
         USRMService.deleteByUsuarioClienteUsuarioid(id.intValue());
@@ -141,9 +155,61 @@ public class UsuarioClienteController {
             }
         }
 
-        // 8. Asignar progresoXEjercicio
+        System.out.println(asignados);
+        // 7. Obtener objetivo Rutina = repeticiones
+        int objetivoR = cliente.get().getObjetivoRutinaid();
+        Map<Integer,Integer> repeticiones = new HashMap<>();
+        repeticiones.put(1,15);
+        repeticiones.put(2,8);
+        repeticiones.put(1,5);
+
+        Map<Integer, Time>  descansos = new HashMap<>();
+        descansos.put(1, Time.valueOf("00:01:00"));
+        descansos.put(2, Time.valueOf("00:01:30"));
+        descansos.put(3, Time.valueOf("00:03:00"));
+
+        // 8. Obtener nivel actividad = peso
+        int nivelA = cliente.get().getNivelActividadFisicaid();
+        Map<Integer,Integer> pesos = new HashMap<>();
+        // medidas en libras
+        pesos.put(1,0);
+        pesos.put(2,5);
+        pesos.put(3,10);
 
 
+        // 9. Crear proresoxEjercicio
+        Calendar calendar = Calendar.getInstance();
+
+        // Establecer la hora, minutos, segundos y milisegundos a cero
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        // Obtener un objeto Date con la fecha actual y la hora establecida a cero
+        Date fechaActual = calendar.getTime();
+
+        for(Integer asig : asignados)
+        {
+            ProgresoxEjercicio progreso = new ProgresoxEjercicio();
+            List<Integer> equipoE = equipoEjercicioService.findEquipoItemidsByEjercicioid(asig);
+            if(!equipoE.contains(15))
+                progreso.setPeso(pesos.get(nivelA));
+            else
+                progreso.setPeso(0);
+            progreso.setFecha(fechaActual);
+            progreso.setValoracion(0);
+            progreso.setSerie(4);
+            progreso.setRepeticiones(repeticiones.get(objetivoR));
+            progreso.setDescansoEntreSeries(descansos.get(objetivoR));
+            progreso.setUsuarioClienteId(cliente.get().getId().intValue());
+            ProgresoxEjercicio guardado = progresoxEjercicioService.save(progreso);
+
+            EjercicioProgresoxEjercicio epg = new EjercicioProgresoxEjercicio();
+            epg.setEjercicioId(asig);
+            epg.setProgresoxEjercicioId(guardado.getId().intValue());
+            ejercicioProgresoxEjercicioService.save(epg);
+        }
 
         return ResponseEntity.noContent().build();
     }
