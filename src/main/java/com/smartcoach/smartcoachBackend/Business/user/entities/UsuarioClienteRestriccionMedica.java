@@ -1,5 +1,7 @@
 package com.smartcoach.smartcoachBackend.Business.user.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,15 +10,17 @@ import javax.persistence.*;
 public class UsuarioClienteRestriccionMedica {
 
     @Id
-    @Column(name = "usuarioclienteusuarioid")
+    @Column(name = "usuarioclienteid")
+    @JsonProperty("usuarioClienteid")
     private Integer usuarioClienteid;
 
     @Id
     @Column(name = "restriccionmedicaid")
+    @JsonProperty("restriccionMedicaid")
     private Integer restriccionMedicaid;
 
-    public UsuarioClienteRestriccionMedica(Integer usuarioClienteUsuarioid, Integer restriccionMedicaid) {
-        this.usuarioClienteid = usuarioClienteUsuarioid;
+    public UsuarioClienteRestriccionMedica(Integer usuarioClienteid, Integer restriccionMedicaid) {
+        this.usuarioClienteid = usuarioClienteid;
         this.restriccionMedicaid = restriccionMedicaid;
     }
 
@@ -25,12 +29,12 @@ public class UsuarioClienteRestriccionMedica {
 
     }
 
-    public Integer getUsuarioClienteId() {
+    public Integer getUsuarioClienteid() {
         return usuarioClienteid;
     }
 
-    public void setUsuarioClienteId(Integer usuarioClienteId) {
-        this.usuarioClienteid = usuarioClienteId;
+    public void setUsuarioClienteId(Integer usuarioClienteid) {
+        this.usuarioClienteid = usuarioClienteid;
     }
 
     public Integer getRestriccionMedicaid() {
@@ -39,5 +43,13 @@ public class UsuarioClienteRestriccionMedica {
 
     public void setRestriccionMedicaid(Integer restriccionMedicaid) {
         this.restriccionMedicaid = restriccionMedicaid;
+    }
+
+    @Override
+    public String toString() {
+        return "UsuarioClienteRestriccionMedica{" +
+                "usuarioClienteid=" + usuarioClienteid +
+                ", restriccionMedicaid=" + restriccionMedicaid +
+                '}';
     }
 }

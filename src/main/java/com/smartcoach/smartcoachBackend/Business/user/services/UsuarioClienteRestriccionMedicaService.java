@@ -25,6 +25,7 @@ public class UsuarioClienteRestriccionMedicaService {
     }
 
     public UsuarioClienteRestriccionMedica save(UsuarioClienteRestriccionMedica usuarioClienteRestriccionMedica) {
+        System.out.println(usuarioClienteRestriccionMedica.toString());
         return repository.save(usuarioClienteRestriccionMedica);
     }
 

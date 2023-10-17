@@ -15,5 +15,11 @@ public class UsuarioClienteRestriccionMedicaId implements Serializable {
         this.restriccionMedicaid = restriccionMedicaid;
     }
 
-
+    @Override
+    public String toString() {
+        return "UsuarioClienteRestriccionMedicaId{" +
+                "usuarioClienteid=" + usuarioClienteid +
+                ", restriccionMedicaid=" + restriccionMedicaid +
+                '}';
+    }
 }
