@@ -3,6 +3,7 @@ package com.smartcoach.smartcoachBackend.Business.exercise.controllers;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.EjercicioProgresoxEjercicio;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.EjercicioProgresoxEjercicioId;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.EjercicioProgresoxEjercicioService;
+import com.smartcoach.smartcoachBackend.Business.user.entities.ProgresoxEjercicio;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,5 +38,11 @@ public class EjercicioProgresoxEjercicioController {
     public void deleteById(@PathVariable Integer ejercicioId, @PathVariable Integer progresoxEjercicioId) {
         EjercicioProgresoxEjercicioId id = new EjercicioProgresoxEjercicioId(ejercicioId, progresoxEjercicioId);
         service.deleteById(id);
+    }
+
+    @GetMapping("/findByEjeIdLatest/{ejercicioId}/{usuarioId}")
+    public ProgresoxEjercicio getLatestProgresoxEjercicio(@PathVariable Integer ejercicioId, @PathVariable Integer usuarioId) {
+
+        return service.findProgresoxEjercicioByEjercicioId(ejercicioId,usuarioId);
     }
 }

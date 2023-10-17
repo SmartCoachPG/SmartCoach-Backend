@@ -1,5 +1,6 @@
 package com.smartcoach.smartcoachBackend.Persistence.user;
 
+import com.smartcoach.smartcoachBackend.Business.exercise.entities.EjercicioProgresoxEjercicio;
 import com.smartcoach.smartcoachBackend.Business.user.entities.ProgresoxEjercicio;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,4 +10,6 @@ public interface ProgresoxEjercicioRepository extends JpaRepository<ProgresoxEje
 
     void deleteByUsuarioClienteId(Integer usuarioClienteId);
     List<ProgresoxEjercicio> findByUsuarioClienteId(Integer usuarioClienteId);
+    List<ProgresoxEjercicio> findByIdOrderByFechaDesc(Integer id);
+
 }

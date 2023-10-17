@@ -1,5 +1,7 @@
 package com.smartcoach.smartcoachBackend.Business.user.services;
 
+import com.smartcoach.smartcoachBackend.Business.exercise.entities.Ejercicio;
+import com.smartcoach.smartcoachBackend.Business.exercise.services.EjercicioService;
 import com.smartcoach.smartcoachBackend.Business.user.entities.ProgresoxEjercicio;
 import com.smartcoach.smartcoachBackend.Persistence.user.ProgresoxEjercicioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,9 @@ public class ProgresoxEjercicioService {
 
     @Autowired
     private ProgresoxEjercicioRepository progresoxEjercicioRepository;
+
+    @Autowired
+    private EjercicioService ejercicioService;
 
     public List<ProgresoxEjercicio> findAll() {
         return progresoxEjercicioRepository.findAll();

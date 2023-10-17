@@ -1,5 +1,6 @@
 package com.smartcoach.smartcoachBackend.Business.exercise.controllers;
 
+import com.smartcoach.smartcoachBackend.Business.exercise.entities.Ejercicio;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.RutinaEjercicio;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.RutinaEjercicioId;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaEjercicioService;
@@ -34,6 +35,11 @@ public class RutinaEjercicioController {
     @DeleteMapping("/{rutinaId}/{ejercicioId}")
     public void deleteById(@PathVariable Integer rutinaId, @PathVariable Integer ejercicioId) {
         service.deleteById(new RutinaEjercicioId(rutinaId, ejercicioId));
+    }
+
+    @GetMapping("/getByRutinaId/{rutinaId}")
+    public List<Ejercicio> findById(@PathVariable Integer rutinaId) {
+        return service.getEjerciciosByRutinaId(rutinaId);
     }
 }
 
