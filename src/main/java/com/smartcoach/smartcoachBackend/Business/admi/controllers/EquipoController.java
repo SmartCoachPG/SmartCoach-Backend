@@ -38,4 +38,9 @@ public class EquipoController {
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
+
+    @GetMapping("/getTipoEquipoByItemId/{itemId}")
+    public Integer findTipoEquipoIdByItemId(@PathVariable Long itemId) {
+        return service.findTipoEquipoIdByItemId(itemId);
+    }
 }

@@ -21,4 +21,8 @@ public class GimnasioItemService {
         return gimnasioItemRepository.save(gimnasioItem);
     }
 
+    public List<GimnasioItem> findGimnasioItemByGimnasioid(int gimnasioid) {
+        return gimnasioItemRepository.findByGimnasioid(gimnasioid);
+    }
+
 }

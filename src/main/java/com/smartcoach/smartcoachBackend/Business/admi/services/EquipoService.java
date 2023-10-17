@@ -70,4 +70,12 @@ public class EquipoService {
         return query.getResultList();
     }
 
+    public Integer findTipoEquipoIdByItemId(Long itemId) {
+        Equipo equipo = repository.findById(itemId).orElse(null);
+        if (equipo != null) {
+            return equipo.getTipoEquipoId();
+        }
+        return null;
+    }
+
 }

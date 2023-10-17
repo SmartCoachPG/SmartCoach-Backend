@@ -29,4 +29,8 @@ public class UbicacionxItemService {
     public void deleteById(int id) {
         ubicacionxItemRepository.deleteById(id);
     }
+
+    public List<UbicacionxItem> getUbicacionxItemsByItemId(int itemid) {
+        return ubicacionxItemRepository.findByItemid(itemid);
+    }
 }

@@ -24,4 +24,9 @@ public class GimnasioItemController {
         return gimnasioItemService.save(gimnasioItem);
     }
 
+    @GetMapping("/getByGimnasioId/{gimnasioid}")
+    public List<GimnasioItem> getGimnasioItemsByGimnasioid(@PathVariable int gimnasioid) {
+        return gimnasioItemService.findGimnasioItemByGimnasioid(gimnasioid);
+    }
+
 }

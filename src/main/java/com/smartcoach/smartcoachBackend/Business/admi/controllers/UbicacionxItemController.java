@@ -39,4 +39,16 @@ public class UbicacionxItemController {
         ubicacionxItemService.deleteById(id);
         return "UbicacionxItem id " + id + " deleted.";
     }
+
+    @GetMapping("/getByItemId/{itemid}/{gimnasioid}")
+    public List<UbicacionxItem> getUbicacionxItemsByItemId(@PathVariable int itemid,@PathVariable int gimnasioid) {
+        List<UbicacionxItem> lista = ubicacionxItemService.getUbicacionxItemsByItemId(itemid);
+
+        for(UbicacionxItem uxi : lista) {
+            if (uxi.getGimnasioid() != gimnasioid) {
+                lista.remove(uxi);
+            }
+        }
+        return lista;
+    }
 }
