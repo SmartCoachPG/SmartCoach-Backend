@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.concurrent.RecursiveTask;
 
@@ -49,7 +50,10 @@ public class RutinaService {
     }
 
     public List<Rutina> asignarGM (int id,int idGrupoM) {
+        System.out.println("DENTRO DE ASIGNA GM : RUTINA SERVICE");
         List<Rutina> rutinas = rutinaRepository.findByUsuarioClienteId(id);
+        System.out.println(rutinas.toString());
+
         rutinas = ordernar(rutinas);
         List<GrupoMuscular> grupoMusculares = grupoMuscularRepository.findAll();
         Optional<GrupoMuscular> grupoMuscularO = grupoMuscularRepository.findById((long) idGrupoM);
@@ -61,9 +65,10 @@ public class RutinaService {
         int band = 0;
         int UgrupoMuscular = grupoMuscularO.get().getUbicacion();
 
+        System.out.println("VAMOS A VER SI ENTRO");
         for (Rutina rutina : rutinas) {
+            System.out.println("ENTRO");
             if (band == UgrupoMuscular) {
-                int test = contadorGM.get(grupoMuscularO.get().getId().intValue()).intValue();
                 if (contadorGM.get(grupoMuscularO.get().getId().intValue()).intValue() < 3) {
                     rutina.setGrupoMuscularId(grupoMuscularO.get().getId().intValue());
                     Long cont = contadorGM.get(grupoMuscularO.get().getId().intValue());
@@ -80,8 +85,9 @@ public class RutinaService {
                 if (band == 0) band++;
                 else band--;
             }
+            rutinaRepository.save(rutina);
         }
-        rutinaRepository.saveAll(rutinas);
+
         return rutinas;
 
     }

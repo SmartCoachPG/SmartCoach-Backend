@@ -109,7 +109,9 @@ public class UsuarioClienteController {
     public ResponseEntity<Void> crearRutina(@PathVariable Long id)
     {
         // 0. Get usuario
+        System.out.println("Tengo usuario:"+id);
         Optional<UsuarioCliente> cliente = usuarioClienteService.findById(id);
+        System.out.println(cliente.get().getNombre());
         // 1.Asignar grupoMuscular a Rutina
         List<Rutina> listaRutinas = rutinaService.asignarGM(id.intValue(),cliente.get().getGrupoMuscularid());
         // 2.Consultar equipo gym
@@ -118,15 +120,19 @@ public class UsuarioClienteController {
         {
             equipoD = equipoService.findEquiposByGimnasioId(cliente.get().getGimnasioid());
         }
+        System.out.println("Equipo"+equipoD);
         // 3.Consultar equipo personal
+
         equipoD.addAll(equipoService.findEquiposByUsuarioId(cliente.get().getId().intValue()));
         equipoD.add(equipoService.getById((long)15));
+        System.out.println("Equipo personal:"+equipoD);
         //4. Filtrar ejercicios por equipo total
         List<Ejercicio> listaEjercicios = new ArrayList<>();
         for(Equipo equipo: equipoD)
         {
             listaEjercicios.addAll(ejercicioService.findEjerciciosByEquipoItemId(equipo.getId().intValue()));
         }
+        System.out.println("Ejercicios"+listaEjercicios);
         //5.Filtrar ejercicios por limitacion fisica
         List <Integer> restriccionesM = usuarioClienteRestriccionMedicaService.findRestriccionesByUsuarioClienteId(cliente.get().getId());
         List<Integer> idEjerciciosX = new ArrayList<>();

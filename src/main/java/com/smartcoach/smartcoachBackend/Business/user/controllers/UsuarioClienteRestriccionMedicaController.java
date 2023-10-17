@@ -28,8 +28,6 @@ public class UsuarioClienteRestriccionMedicaController {
 
     @PostMapping("/crear")
     public UsuarioClienteRestriccionMedica save(@RequestBody UsuarioClienteRestriccionMedica usuarioClienteRestriccionMedica) {
-        System.out.println("Controllador");
-        System.out.println(usuarioClienteRestriccionMedica.toString());
         return service.save(usuarioClienteRestriccionMedica);
     }
 
