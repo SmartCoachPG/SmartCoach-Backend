@@ -11,13 +11,13 @@ public class ImagenEjercicio {
     private Long id;
 
     @Column(name = "imagen")
-    private byte[] imagen;
+    private String imagen;
 
     @ManyToOne
     @JoinColumn(name = "ejercicioid", nullable = false)
     private Ejercicio ejercicio;
 
-    public ImagenEjercicio(Long id, byte[] imagen, Ejercicio ejercicio) {
+    public ImagenEjercicio(Long id, String imagen, Ejercicio ejercicio) {
         this.id = id;
         this.imagen = imagen;
         this.ejercicio = ejercicio;
@@ -36,11 +36,11 @@ public class ImagenEjercicio {
         this.id = id;
     }
 
-    public byte[] getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(byte[] imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
