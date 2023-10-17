@@ -12,18 +12,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // servicio
-        http.cors().and().csrf().disable()
+        /*http.cors().and().csrf().disable()
                 .addFilterAfter(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/usuarios/iniciarsesion", "/api/usuarios/hashContraseñas", "/api/usuarioadministrador/crear","/api/usuariocliente/crear","/api/rutina/crear","/api/perfilmedico/crear","/api/valor/crear","/api/usuarioclienterestriccionmedica/crear").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/objetivorutina/crear","/api/grupomuscular/crear","/api/unidadmetrica/libre","/api/valorevaluacionfisica/libre","/api/restriccionmedica/libre").permitAll()
                 .anyRequest().authenticated();
-
+           */
         // desarrollo
-         /*http.cors().and().csrf().disable()
+         http.cors().and().csrf().disable()
                 .addFilterAfter(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/**").permitAll()
-                .anyRequest().authenticated();*/
+                .anyRequest().authenticated();
     }
 }

@@ -15,7 +15,6 @@ public class GimnasioItem {
     @Column(name = "itemid")
     private int itemid;
 
-
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
 

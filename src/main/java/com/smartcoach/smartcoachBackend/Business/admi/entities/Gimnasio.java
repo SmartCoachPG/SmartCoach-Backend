@@ -22,10 +22,10 @@ public class Gimnasio {
     @Column(nullable = false)
     private String barrio;
 
-    @Lob
-    private byte[] imagenGimnasio;
+    @Column(name = "imagen_gimnasio")
+    private String imagenGimnasio;
 
-    public Gimnasio(Long id, String nombre, Integer pisos, String direccion, String barrio, byte[] imagenGimnasio) {
+    public Gimnasio(Long id, String nombre, Integer pisos, String direccion, String barrio, String imagenGimnasio) {
         this.id = id;
         this.nombre = nombre;
         this.pisos = pisos;
@@ -78,11 +78,11 @@ public class Gimnasio {
         this.barrio = barrio;
     }
 
-    public byte[] getImagenGimnasio() {
+    public String getImagenGimnasio() {
         return imagenGimnasio;
     }
 
-    public void setImagenGimnasio(byte[] imagenGimnasio) {
+    public void setImagenGimnasio(String imagenGimnasio) {
         this.imagenGimnasio = imagenGimnasio;
     }
 }

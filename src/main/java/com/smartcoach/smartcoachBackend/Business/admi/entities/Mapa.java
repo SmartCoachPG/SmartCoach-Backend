@@ -25,18 +25,13 @@ public class Mapa {
     @Column(name = "gimnasioid", nullable = false)
     private Integer gimnasioId;
 
-    @ManyToOne
-    @JoinColumn(name = "gimnasioid", referencedColumnName = "id", insertable = false, updatable = false)
-    private Gimnasio gimnasio;
-
-    public Mapa(Long id, Integer nivel, Integer ancho, Integer alto, Integer version, Integer gimnasioId, Gimnasio gimnasio) {
+    public Mapa(Long id, Integer nivel, Integer ancho, Integer alto, Integer version, Integer gimnasioId) {
         this.id = id;
         this.nivel = nivel;
         this.ancho = ancho;
         this.alto = alto;
         this.version = version;
         this.gimnasioId = gimnasioId;
-        this.gimnasio = gimnasio;
     }
 
     public Mapa()
@@ -92,11 +87,4 @@ public class Mapa {
         this.gimnasioId = gimnasioId;
     }
 
-    public Gimnasio getGimnasio() {
-        return gimnasio;
-    }
-
-    public void setGimnasio(Gimnasio gimnasio) {
-        this.gimnasio = gimnasio;
-    }
 }

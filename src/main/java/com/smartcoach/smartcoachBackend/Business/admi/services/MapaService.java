@@ -28,4 +28,8 @@ public class MapaService {
     public void deleteById(Long id) {
         mapaRepository.deleteById(id);
     }
+
+    public List<Mapa> findMapasByGimnasioId(Integer gimnasioId) {
+        return mapaRepository.findByGimnasioId(gimnasioId);
+    }
 }

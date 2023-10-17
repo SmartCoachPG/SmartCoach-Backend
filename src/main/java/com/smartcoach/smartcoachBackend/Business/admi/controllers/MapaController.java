@@ -33,4 +33,9 @@ public class MapaController {
     public void deleteById(@PathVariable Long id) {
         mapaService.deleteById(id);
     }
+
+    @GetMapping("/getMapaByGId/{gimnasioId}")
+    public List<Mapa> getMapasByGimnasioId(@PathVariable Integer gimnasioId) {
+        return mapaService.findMapasByGimnasioId(gimnasioId);
+    }
 }

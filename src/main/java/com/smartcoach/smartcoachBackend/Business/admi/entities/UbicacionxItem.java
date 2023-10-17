@@ -22,9 +22,6 @@ public class UbicacionxItem implements Serializable {
     @Column(name = "gimnasioid")
     private int gimnasioid;
 
-    @ManyToOne
-    @JoinColumn(name = "Mapaid", insertable = false, updatable = false)
-    private Mapa mapa;
 
     @ManyToOne
     @JoinColumns({
@@ -33,13 +30,12 @@ public class UbicacionxItem implements Serializable {
     })
     private GimnasioItem gimnasioItem;
 
-    public UbicacionxItem(int mapaid, int coordenadaX, int coordenadaY, int itemid, int gimnasioid, Mapa mapa, GimnasioItem gimnasioItem) {
+    public UbicacionxItem(int mapaid, int coordenadaX, int coordenadaY, int itemid, int gimnasioid, GimnasioItem gimnasioItem) {
         this.mapaid = mapaid;
         this.coordenadaX = coordenadaX;
         this.coordenadaY = coordenadaY;
         this.itemid = itemid;
         this.gimnasioid = gimnasioid;
-        this.mapa = mapa;
         this.gimnasioItem = gimnasioItem;
     }
 
@@ -86,14 +82,6 @@ public class UbicacionxItem implements Serializable {
 
     public void setGimnasioid(int gimnasioid) {
         this.gimnasioid = gimnasioid;
-    }
-
-    public Mapa getMapa() {
-        return mapa;
-    }
-
-    public void setMapa(Mapa mapa) {
-        this.mapa = mapa;
     }
 
     public GimnasioItem getGimnasioItem() {
