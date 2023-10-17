@@ -33,4 +33,9 @@ public class ProgresoxEjercicioController {
     public void deleteById(@PathVariable Long id) {
         progresoxEjercicioService.deleteById(id);
     }
+
+    @GetMapping("/getByUser/{id}")
+    public List<ProgresoxEjercicio> getByUsuarioClienteId(@PathVariable Integer id) {
+        return progresoxEjercicioService.findByUsuarioClienteId(id);
+    }
 }

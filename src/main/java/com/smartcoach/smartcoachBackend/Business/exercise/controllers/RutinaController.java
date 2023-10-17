@@ -33,4 +33,10 @@ public class RutinaController {
     public void deleteById(@PathVariable int id) {
         rutinaService.deleteById(id);
     }
+
+    @GetMapping("/getByUser/{id}")
+    public List<Rutina> getByUsuarioClienteId(@PathVariable  int id) {
+        return rutinaService.getByUsuarioClienteId(id);
+    }
+
 }
