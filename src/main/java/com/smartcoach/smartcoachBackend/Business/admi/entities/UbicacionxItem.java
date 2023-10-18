@@ -7,6 +7,9 @@ import java.io.Serializable;
 public class UbicacionxItem implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "mapaid")
     private int mapaid;
 
