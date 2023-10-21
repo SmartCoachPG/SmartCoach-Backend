@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface EquipoRepository extends JpaRepository<Equipo, Long> {
-    List<Equipo> findByUsuarioClienteId(Integer usuarioClienteId);
-    void deleteByUsuarioClienteId(Integer usuarioClienteId);
+    List<Equipo> findByUsuarioId(Integer usuarioId);
+    void deleteByUsuarioId(Integer usuarioId);
 }

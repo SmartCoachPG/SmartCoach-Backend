@@ -43,11 +43,11 @@ public class EquipoService {
     }
 
     public void deleteByUsuarioClienteId(Integer usuarioClienteId) {
-        List<Equipo> equipos = repository.findByUsuarioClienteId(usuarioClienteId);
+        List<Equipo> equipos = repository.findByUsuarioId(usuarioClienteId);
         for (Equipo equipo : equipos) {
             itemRepository.deleteById(equipo.getId());
         }
-        repository.deleteByUsuarioClienteId(usuarioClienteId);
+        repository.deleteByUsuarioId(usuarioClienteId);
 
     }
 

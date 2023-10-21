@@ -9,10 +9,10 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name = "itemid", referencedColumnName = "id")
 public class Equipo extends Item {
 
-    private String referencia;
+    private String referencia; 
 
-    @Column(name="usuarioclienteusuarioid")
-    private Integer usuarioClienteId;
+    @Column(name="usuarioid")
+    private Integer usuarioId;
 
     @Column(name="tipoequipoid")
     private Integer tipoEquipoId;
@@ -20,13 +20,13 @@ public class Equipo extends Item {
     public Equipo(Long id, String imagen, String nombre, Long itemId, String referencia, Integer usuarioClienteId, Integer tipoEquipoId) {
         super(id, imagen, nombre);
         this.referencia = referencia;
-        this.usuarioClienteId = usuarioClienteId;
+        this.usuarioId = usuarioClienteId;
         this.tipoEquipoId = tipoEquipoId;
     }
 
     public Equipo(Long itemId, String referencia, Integer usuarioClienteId, Integer tipoEquipoId) {
         this.referencia = referencia;
-        this.usuarioClienteId = usuarioClienteId;
+        this.usuarioId = usuarioClienteId;
         this.tipoEquipoId = tipoEquipoId;
     }
 
@@ -45,11 +45,11 @@ public class Equipo extends Item {
     }
 
     public Integer getUsuarioClienteId() {
-        return usuarioClienteId;
+        return usuarioId;
     }
 
     public void setUsuarioClienteId(Integer usuarioClienteId) {
-        this.usuarioClienteId = usuarioClienteId;
+        this.usuarioId = usuarioClienteId;
     }
 
     public Integer getTipoEquipoId() {
@@ -65,7 +65,7 @@ public class Equipo extends Item {
         return "Equipo{" +
                 super.toString()+
                 "referencia='" + referencia + '\'' +
-                ", usuarioClienteId=" + usuarioClienteId +
+                ", usuarioClienteId=" + usuarioId +
                 ", tipoEquipoId=" + tipoEquipoId +
                 '}';
     }
