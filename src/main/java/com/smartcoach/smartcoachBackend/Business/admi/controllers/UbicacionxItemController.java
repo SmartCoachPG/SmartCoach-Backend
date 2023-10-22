@@ -51,4 +51,10 @@ public class UbicacionxItemController {
         }
         return lista;
     }
+
+    @GetMapping("/getByGimnasioId/{gimnasioid}")
+    public List<UbicacionxItem> getUbicacionxItemsByGimnasioId(@PathVariable int gimnasioid) {
+        List<UbicacionxItem> lista = ubicacionxItemService.getUbicacionxItemByGimnasioId(gimnasioid);
+        return lista;
+    }
 }

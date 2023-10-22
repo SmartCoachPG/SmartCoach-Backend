@@ -37,8 +37,12 @@ public class UsuarioClienteService {
         return usuarioClienteRepository.findAll();
     }
 
-
     public void deteleById(Long  id) {
         usuarioClienteRepository.deleteById(id);
     }
+
+    public List<UsuarioCliente> getUsuarioClientesByGimnasioid(Integer gimnasioid) {
+        return usuarioClienteRepository.findByGimnasioid(gimnasioid);
+    }
+
 }

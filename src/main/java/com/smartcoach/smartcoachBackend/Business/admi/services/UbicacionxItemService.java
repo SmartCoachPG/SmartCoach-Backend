@@ -33,4 +33,9 @@ public class UbicacionxItemService {
     public List<UbicacionxItem> getUbicacionxItemsByItemId(int itemid) {
         return ubicacionxItemRepository.findByItemid(itemid);
     }
+
+    public List<UbicacionxItem> getUbicacionxItemByGimnasioId(int gimnasioid)
+    {
+        return ubicacionxItemRepository.findByGimnasioid(gimnasioid);
+    }
 }

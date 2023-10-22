@@ -10,4 +10,7 @@ import java.util.List;
 public interface UbicacionxItemRepository extends JpaRepository<UbicacionxItem, Integer> {
 
     List<UbicacionxItem> findByItemid(int itemid);
+
+    List<UbicacionxItem> findByGimnasioid(int gimnasioid);
+
 }

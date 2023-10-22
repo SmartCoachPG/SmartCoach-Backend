@@ -26,17 +26,13 @@ public class UbicacionxItem implements Serializable {
     private int gimnasioid;
 
 
-    public UbicacionxItem(int mapaid, int coordenadaX, int coordenadaY, int itemid, int gimnasioid ) {
+    public UbicacionxItem(Long id, int mapaid, int coordenadaX, int coordenadaY, int itemid, int gimnasioid) {
+        this.id = id;
         this.mapaid = mapaid;
         this.coordenadaX = coordenadaX;
         this.coordenadaY = coordenadaY;
         this.itemid = itemid;
         this.gimnasioid = gimnasioid;
-    }
-
-    public UbicacionxItem()
-    {
-
     }
 
     public int getMapaid() {
@@ -79,4 +75,23 @@ public class UbicacionxItem implements Serializable {
         this.gimnasioid = gimnasioid;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "UbicacionxItem{" +
+                "id=" + id +
+                ", mapaid=" + mapaid +
+                ", coordenadaX=" + coordenadaX +
+                ", coordenadaY=" + coordenadaY +
+                ", itemid=" + itemid +
+                ", gimnasioid=" + gimnasioid +
+                '}';
+    }
 }
