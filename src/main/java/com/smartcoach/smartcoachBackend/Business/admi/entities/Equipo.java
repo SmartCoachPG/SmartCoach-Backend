@@ -9,7 +9,10 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name = "itemid", referencedColumnName = "id")
 public class Equipo extends Item {
 
-    private String referencia; 
+    private String referencia;
+
+    @Column(name="descripcion")
+    private String descripcion;
 
     @Column(name="usuarioid")
     private Integer usuarioId;
@@ -17,16 +20,18 @@ public class Equipo extends Item {
     @Column(name="tipoequipoid")
     private Integer tipoEquipoId;
 
-    public Equipo(Long id, String imagen, String nombre, Long itemId, String referencia, Integer usuarioClienteId, Integer tipoEquipoId) {
+    public Equipo(Long id, String imagen, String nombre, String referencia, String descripcion, Integer usuarioId, Integer tipoEquipoId) {
         super(id, imagen, nombre);
         this.referencia = referencia;
-        this.usuarioId = usuarioClienteId;
+        this.descripcion = descripcion;
+        this.usuarioId = usuarioId;
         this.tipoEquipoId = tipoEquipoId;
     }
 
-    public Equipo(Long itemId, String referencia, Integer usuarioClienteId, Integer tipoEquipoId) {
+    public Equipo(String referencia, String descripcion, Integer usuarioId, Integer tipoEquipoId) {
         this.referencia = referencia;
-        this.usuarioId = usuarioClienteId;
+        this.descripcion = descripcion;
+        this.usuarioId = usuarioId;
         this.tipoEquipoId = tipoEquipoId;
     }
 
@@ -60,12 +65,28 @@ public class Equipo extends Item {
         this.tipoEquipoId = tipoEquipoId;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Integer getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Integer usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
     @Override
     public String toString() {
         return "Equipo{" +
-                super.toString()+
                 "referencia='" + referencia + '\'' +
-                ", usuarioClienteId=" + usuarioId +
+                ", descripcion='" + descripcion + '\'' +
+                ", usuarioId=" + usuarioId +
                 ", tipoEquipoId=" + tipoEquipoId +
                 '}';
     }
