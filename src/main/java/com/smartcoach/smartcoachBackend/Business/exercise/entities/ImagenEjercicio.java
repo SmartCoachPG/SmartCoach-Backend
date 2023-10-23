@@ -13,14 +13,14 @@ public class ImagenEjercicio {
     @Column(name = "imagen")
     private String imagen;
 
-    @ManyToOne
-    @JoinColumn(name = "ejercicioid", nullable = false)
-    private Ejercicio ejercicio;
+    @Column(name = "ejercicioid", nullable = false)
+    private int ejercicioid;
 
-    public ImagenEjercicio(Long id, String imagen, Ejercicio ejercicio) {
+
+    public ImagenEjercicio(Long id, String imagen, int ejercicioid) {
         this.id = id;
         this.imagen = imagen;
-        this.ejercicio = ejercicio;
+        this.ejercicioid = ejercicioid;
     }
 
     public ImagenEjercicio()
@@ -44,11 +44,11 @@ public class ImagenEjercicio {
         this.imagen = imagen;
     }
 
-    public Ejercicio getEjercicio() {
-        return ejercicio;
+    public int getEjercicioid() {
+        return ejercicioid;
     }
 
-    public void setEjercicio(Ejercicio ejercicio) {
-        this.ejercicio = ejercicio;
+    public void setEjercicioid(int ejercicioid) {
+        this.ejercicioid = ejercicioid;
     }
 }

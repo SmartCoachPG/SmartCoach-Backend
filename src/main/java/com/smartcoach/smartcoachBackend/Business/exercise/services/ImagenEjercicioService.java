@@ -28,5 +28,9 @@ public class ImagenEjercicioService {
     public void deleteById(Long id) {
         imagenEjercicioRepository.deleteById(id);
     }
+
+    public List<ImagenEjercicio> findByEjercicioid(int ejercicioid) {
+        return imagenEjercicioRepository.findByEjercicioid(ejercicioid);
+    }
 }
 

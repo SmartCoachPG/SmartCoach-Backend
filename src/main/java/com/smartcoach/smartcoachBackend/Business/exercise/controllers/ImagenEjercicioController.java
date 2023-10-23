@@ -33,4 +33,9 @@ public class ImagenEjercicioController {
     public void deleteById(@PathVariable Long id) {
         imagenEjercicioService.deleteById(id);
     }
+
+    @GetMapping("/findByEjercicioid/{id}")
+    public List<ImagenEjercicio> findByEjercicioid(@PathVariable int id) {
+        return imagenEjercicioService.findByEjercicioid(id);
+    }
 }
