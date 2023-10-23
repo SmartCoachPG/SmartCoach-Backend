@@ -244,5 +244,9 @@ public class UsuarioClienteController {
     }
 
 
-
+    @GetMapping("/validarRutina/{idUsuario}")
+    public Boolean validarRutina(@PathVariable Long idUsuario)
+    {
+       return usuarioClienteService.validarRutina(idUsuario);
+    }
 }

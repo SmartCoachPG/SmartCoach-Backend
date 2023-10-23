@@ -64,7 +64,7 @@ public class EquipoService {
     }
 
     public List<Equipo> findEquiposByUsuarioId(Integer usuarioId) {
-        String jpql = "SELECT e FROM Equipo e WHERE e.usuarioClienteId = :usuarioId";
+        String jpql = "SELECT e FROM Equipo e WHERE e.usuarioId = :usuarioId";
         TypedQuery<Equipo> query = em.createQuery(jpql, Equipo.class);
         query.setParameter("usuarioId", usuarioId);
         return query.getResultList();

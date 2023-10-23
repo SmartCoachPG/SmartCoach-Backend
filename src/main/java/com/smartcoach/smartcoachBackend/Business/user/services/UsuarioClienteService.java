@@ -1,13 +1,23 @@
 package com.smartcoach.smartcoachBackend.Business.user.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.smartcoach.smartcoachBackend.Business.exercise.entities.Ejercicio;
+import com.smartcoach.smartcoachBackend.Business.exercise.entities.GrupoMuscular;
+import com.smartcoach.smartcoachBackend.Business.exercise.entities.Rutina;
+import com.smartcoach.smartcoachBackend.Business.exercise.entities.RutinaEjercicio;
+import com.smartcoach.smartcoachBackend.Business.exercise.services.EjercicioService;
+import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaEjercicioService;
+import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaService;
 import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioCliente;
 import com.smartcoach.smartcoachBackend.Persistence.user.UsuarioClienteRepository;
 import com.smartcoach.smartcoachBackend.Security.PasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Service
 public class UsuarioClienteService {
@@ -16,7 +26,16 @@ public class UsuarioClienteService {
     private PasswordService passwordService;
 
     @Autowired
+    private RutinaService rutinaService;
+
+    @Autowired
+    private RutinaEjercicioService rutinaEjercicioService;
+
+    @Autowired
     private UsuarioClienteRepository usuarioClienteRepository;
+
+    @Autowired
+    private EjercicioService ejercicioService;
 
     public UsuarioCliente create(UsuarioCliente usuarioCliente) {
         String password = usuarioCliente.getContrasenna();
@@ -43,6 +62,40 @@ public class UsuarioClienteService {
 
     public List<UsuarioCliente> getUsuarioClientesByGimnasioid(Integer gimnasioid) {
         return usuarioClienteRepository.findByGimnasioid(gimnasioid);
+    }
+
+    public Boolean validarRutina(Long idUsuario)
+    {
+        // Tiene rutinas?
+        List<Rutina> listaRutinas = rutinaService.getByUsuarioClienteId(idUsuario.intValue());
+        List<Ejercicio> listaEje = new ArrayList<>();
+        for(Rutina rut:listaRutinas)
+        {
+            listaEje.addAll(rutinaEjercicioService.getEjerciciosByRutinaId(rut.getId()));
+        }
+
+        if(listaEje.isEmpty())
+        {
+            System.out.println("Usuario no tiene ejercicios en sus rutinas");
+            return false;
+        }
+        // La rutina que tiene es para tu musculo objetivo?
+        int grupoMuscularO = usuarioClienteRepository.getById(idUsuario).getGrupoMuscularid();
+        boolean tieneGM = false;
+        for(Ejercicio ej: listaEje)
+        {
+            List<Integer> grupos = ejercicioService.findGrupoMuscular(ej.getId().intValue());
+
+            for(Integer idGm : grupos)
+            {
+                if(idGm==grupoMuscularO)
+                {
+                    return true;
+                }
+            }
+        }
+        System.out.println("Usuario no tiene ejercicios para el grupo muscular objetivo");
+        return tieneGM;
     }
 
 }
