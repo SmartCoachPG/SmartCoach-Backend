@@ -12,4 +12,6 @@ public interface GimnasioItemRepository extends JpaRepository<GimnasioItem, Gimn
 
     List<GimnasioItem> findByGimnasioid(int gimnasioid);
 
+
+
 }

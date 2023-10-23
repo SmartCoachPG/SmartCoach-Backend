@@ -35,6 +35,10 @@ public class UbicacionxItem implements Serializable {
         this.gimnasioid = gimnasioid;
     }
 
+    public UbicacionxItem()
+    {
+
+    }
     public int getMapaid() {
         return mapaid;
     }

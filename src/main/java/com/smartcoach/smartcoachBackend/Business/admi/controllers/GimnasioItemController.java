@@ -3,6 +3,7 @@ package com.smartcoach.smartcoachBackend.Business.admi.controllers;
 import com.smartcoach.smartcoachBackend.Business.admi.entities.GimnasioItem;
 import com.smartcoach.smartcoachBackend.Business.admi.services.GimnasioItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,12 @@ public class GimnasioItemController {
     @GetMapping("/getByGimnasioId/{gimnasioid}")
     public List<GimnasioItem> getGimnasioItemsByGimnasioid(@PathVariable int gimnasioid) {
         return gimnasioItemService.findGimnasioItemByGimnasioid(gimnasioid);
+    }
+
+    @DeleteMapping("/delete/{gimnasioid}/{itemid}")
+    public ResponseEntity<Void> deleteGimnasioItem(@PathVariable("gimnasioid") int gimnasioid, @PathVariable("itemid") int itemid) {
+        gimnasioItemService.deleteGimnasioItem(gimnasioid, itemid);
+        return ResponseEntity.ok().build();
     }
 
 }
