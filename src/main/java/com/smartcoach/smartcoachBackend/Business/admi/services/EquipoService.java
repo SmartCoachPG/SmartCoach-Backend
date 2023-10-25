@@ -1,6 +1,8 @@
 package com.smartcoach.smartcoachBackend.Business.admi.services;
 
 import com.smartcoach.smartcoachBackend.Business.admi.entities.Equipo;
+import com.smartcoach.smartcoachBackend.Business.exercise.entities.EquipoEjercicio;
+import com.smartcoach.smartcoachBackend.Business.exercise.services.EquipoEjercicioService;
 import com.smartcoach.smartcoachBackend.Persistence.admi.EquipoRepository;
 import com.smartcoach.smartcoachBackend.Persistence.admi.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,6 +23,9 @@ public class EquipoService {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private EquipoEjercicioService equipoEjercicioService;
 
 
     public Equipo create(Equipo equipo) {
@@ -76,6 +82,19 @@ public class EquipoService {
             return equipo.getTipoEquipoId();
         }
         return null;
+    }
+
+    public List<String> findEquipoByEjercicioId(Long idEjercicio)
+    {
+        List<String> nombreEquipos = new ArrayList<>();
+        List<Integer> equipoEjercicios = equipoEjercicioService.findEquipoItemidsByEjercicioid(idEjercicio.intValue());
+
+        for(Integer id: equipoEjercicios)
+        {
+            nombreEquipos.add(repository.findById(id.longValue()).get().getNombre());
+        }
+
+        return nombreEquipos;
     }
 
 }

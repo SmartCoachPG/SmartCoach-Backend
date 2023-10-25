@@ -43,4 +43,10 @@ public class EquipoController {
     public Integer findTipoEquipoIdByItemId(@PathVariable Long itemId) {
         return service.findTipoEquipoIdByItemId(itemId);
     }
+
+    @GetMapping("/getEquipoByEjercicioId/{ejercicioId}")
+    public List<String> findEquipoByEjercicioId(@PathVariable Long ejercicioId) {
+        return service.findEquipoByEjercicioId(ejercicioId.longValue());
+    }
+
 }

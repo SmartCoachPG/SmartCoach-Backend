@@ -30,4 +30,9 @@ public class MusculoEjercicioService {
     public void deleteById(MusculoEjercicioId id) {
         repository.deleteById(id);
     }
+
+    public List<MusculoEjercicio> findByEjercicioId(Long ejercicioId)
+    {
+        return repository.findByEjercicioId(ejercicioId.intValue());
+    }
 }
