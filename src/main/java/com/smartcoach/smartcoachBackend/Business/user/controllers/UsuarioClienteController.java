@@ -167,7 +167,7 @@ public class UsuarioClienteController {
         Map<Integer,Integer> repeticiones = new HashMap<>();
         repeticiones.put(1,15);
         repeticiones.put(2,8);
-        repeticiones.put(1,5);
+        repeticiones.put(3,5);
 
         Map<Integer, Time>  descansos = new HashMap<>();
         descansos.put(1, Time.valueOf("00:01:00"));
