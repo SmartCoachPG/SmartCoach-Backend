@@ -41,5 +41,12 @@ public class EquipoEjercicioService {
 
         return equipoItemids;
     }
+
+    public List<EquipoEjercicio> findEjercicioidbyEquipoid(int itemid) {
+        List<EquipoEjercicio> ejerciciosEquipo = repository.findByEquipoItemid(itemid);
+
+
+        return ejerciciosEquipo;
+    }
 }
 

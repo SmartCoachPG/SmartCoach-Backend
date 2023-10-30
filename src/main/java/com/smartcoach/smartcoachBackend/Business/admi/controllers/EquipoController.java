@@ -1,6 +1,8 @@
 package com.smartcoach.smartcoachBackend.Business.admi.controllers;
 
 import com.smartcoach.smartcoachBackend.Business.admi.entities.Equipo;
+import com.smartcoach.smartcoachBackend.Business.admi.entities.Item;
+import com.smartcoach.smartcoachBackend.Business.admi.entities.TipoEquipo;
 import com.smartcoach.smartcoachBackend.Business.admi.services.EquipoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -48,5 +50,17 @@ public class EquipoController {
     public List<String> findEquipoByEjercicioId(@PathVariable Long ejercicioId) {
         return service.findEquipoByEjercicioId(ejercicioId.longValue());
     }
+
+    @GetMapping("/getMusculosByEquipoId/{idItem}")
+    public List<String> findMusculoByEquipoId(@PathVariable Long idItem) {
+        return service.findMusculoByEquipoId(idItem);
+    }
+
+    @GetMapping("/getTipoName/{idItem}")
+    public TipoEquipo findTipoEquipoNameByEquipoId(@PathVariable Long idItem) {
+        return service.findTipoEquipoNameByEquipoId(idItem);
+    }
+
+
 
 }

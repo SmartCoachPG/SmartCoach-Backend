@@ -11,7 +11,7 @@ import java.util.List;
 public interface GimnasioItemRepository extends JpaRepository<GimnasioItem, GimnasioItemId> {
 
     List<GimnasioItem> findByGimnasioid(int gimnasioid);
-
+    GimnasioItem findByGimnasioidAndItemid(int gimnasioid, int itemid);
 
 
 }

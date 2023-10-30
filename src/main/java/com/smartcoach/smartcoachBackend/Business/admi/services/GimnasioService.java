@@ -59,7 +59,7 @@ public class GimnasioService {
         List<UbicacionxItem> listaUI = ubicacionxItemService.getUbicacionxItemByGimnasioId(id.intValue());
         for(UbicacionxItem uxi : listaUI)
         {
-            ubicacionxItemService.deleteById(uxi.getId().intValue());
+            ubicacionxItemService.deleteById(uxi.getId());
         }
 
         // 3.eliminar gimnasioItem

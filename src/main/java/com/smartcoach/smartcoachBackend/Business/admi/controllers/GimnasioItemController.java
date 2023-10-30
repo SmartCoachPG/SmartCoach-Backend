@@ -36,4 +36,14 @@ public class GimnasioItemController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/update")
+    public GimnasioItem updateGimnasioItem(@RequestBody GimnasioItem gimnasioItem) {
+        return gimnasioItemService.update(gimnasioItem);
+    }
+
+    @GetMapping("/{gimnasioid}/{itemid}")
+    public GimnasioItem getGimnasioItem(@PathVariable int gimnasioid, @PathVariable int itemid) {
+        return gimnasioItemService.findGimnasioItem(gimnasioid, itemid);
+    }
+
 }

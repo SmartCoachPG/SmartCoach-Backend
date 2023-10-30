@@ -20,7 +20,7 @@ public class UbicacionxItemController {
     }
 
     @GetMapping("/{id}")
-    public UbicacionxItem getUbicacionxItemById(@PathVariable int id) {
+    public UbicacionxItem getUbicacionxItemById(@PathVariable Long id) {
         return ubicacionxItemService.findById(id).orElse(null);
     }
 
@@ -34,8 +34,8 @@ public class UbicacionxItemController {
         return ubicacionxItemService.save(ubicacionxItem);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteUbicacionxItem(@PathVariable int id) {
+    @DeleteMapping("/{id}")
+    public String deleteUbicacionxItem(@PathVariable Long id) {
         ubicacionxItemService.deleteById(id);
         return "UbicacionxItem id " + id + " deleted.";
     }

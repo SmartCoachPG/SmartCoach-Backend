@@ -1,8 +1,13 @@
 package com.smartcoach.smartcoachBackend.Business.admi.services;
 
 import com.smartcoach.smartcoachBackend.Business.admi.entities.Equipo;
+import com.smartcoach.smartcoachBackend.Business.admi.entities.Item;
+import com.smartcoach.smartcoachBackend.Business.admi.entities.TipoEquipo;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.EquipoEjercicio;
+import com.smartcoach.smartcoachBackend.Business.exercise.entities.MusculoEjercicio;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.EquipoEjercicioService;
+import com.smartcoach.smartcoachBackend.Business.exercise.services.MusculoEjercicioService;
+import com.smartcoach.smartcoachBackend.Business.exercise.services.MusculoService;
 import com.smartcoach.smartcoachBackend.Persistence.admi.EquipoRepository;
 import com.smartcoach.smartcoachBackend.Persistence.admi.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +30,16 @@ public class EquipoService {
     private ItemRepository itemRepository;
 
     @Autowired
+    private TipoEquipoService tipoEquipoService;
+
+    @Autowired
     private EquipoEjercicioService equipoEjercicioService;
 
+    @Autowired
+    private MusculoEjercicioService musculoEjercicioService;
+
+    @Autowired
+    MusculoService musculoService;
 
     public Equipo create(Equipo equipo) {
         return repository.save(equipo);
@@ -95,6 +108,32 @@ public class EquipoService {
         }
 
         return nombreEquipos;
+    }
+
+
+    public TipoEquipo findTipoEquipoNameByEquipoId(Long idItem)
+    {
+        Equipo tempE = getById(idItem);
+        return tipoEquipoService.getById(tempE.getTipoEquipoId().longValue());
+    }
+
+    public List<String> findMusculoByEquipoId(Long idItem)
+    {
+        List<String> nombreMusculos = new ArrayList<>();
+        Equipo equipo = getById(idItem);
+        List<EquipoEjercicio> equipoEjercicio = equipoEjercicioService.findEjercicioidbyEquipoid(equipo.getId().intValue());
+        System.out.println(equipoEjercicio.toString());
+        List<MusculoEjercicio> listaM = new ArrayList<>();
+        for(EquipoEjercicio ee : equipoEjercicio)
+        {
+            listaM.addAll(musculoEjercicioService.findByEjercicioId(Long.valueOf(ee.getEjercicioid())));
+        }
+        System.out.println(listaM);
+        for(MusculoEjercicio me: listaM)
+        {
+            nombreMusculos.add(musculoService.findById(Long.valueOf(me.getMusculoId())).getNombreMusculo());
+        }
+        return  nombreMusculos;
     }
 
 }

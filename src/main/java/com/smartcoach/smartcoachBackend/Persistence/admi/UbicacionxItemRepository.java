@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UbicacionxItemRepository extends JpaRepository<UbicacionxItem, Integer> {
+public interface UbicacionxItemRepository extends JpaRepository<UbicacionxItem, Long> {
 
     List<UbicacionxItem> findByItemid(int itemid);
 

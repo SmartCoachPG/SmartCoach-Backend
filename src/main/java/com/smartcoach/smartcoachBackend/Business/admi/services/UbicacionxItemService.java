@@ -18,7 +18,7 @@ public class UbicacionxItemService {
         return ubicacionxItemRepository.findAll();
     }
 
-    public Optional<UbicacionxItem> findById(int id) {
+    public Optional<UbicacionxItem> findById(Long id) {
         return ubicacionxItemRepository.findById(id);
     }
 
@@ -26,7 +26,7 @@ public class UbicacionxItemService {
         return ubicacionxItemRepository.save(ubicacionxItem);
     }
 
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         ubicacionxItemRepository.deleteById(id);
     }
 

@@ -1,8 +1,6 @@
 package com.smartcoach.smartcoachBackend.Business.admi.services;
 
-import com.smartcoach.smartcoachBackend.Business.admi.entities.GimnasioItem;
-import com.smartcoach.smartcoachBackend.Business.admi.entities.GimnasioItemId;
-import com.smartcoach.smartcoachBackend.Business.admi.entities.UbicacionxItem;
+import com.smartcoach.smartcoachBackend.Business.admi.entities.*;
 import com.smartcoach.smartcoachBackend.Persistence.admi.GimnasioItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,10 +39,18 @@ public class GimnasioItemService {
         {
             if(ui.getItemid()==itemid)
             {
-                ubicacionxItemService.deleteById(ui.getId().intValue());
+                ubicacionxItemService.deleteById(ui.getId());
             }
         }
         gimnasioItemRepository.deleteById(id);
+    }
+
+    public GimnasioItem update(GimnasioItem gimnasioItem) {
+        return gimnasioItemRepository.save(gimnasioItem);
+    }
+
+    public GimnasioItem findGimnasioItem(int gimnasioid, int itemid) {
+        return gimnasioItemRepository.findByGimnasioidAndItemid(gimnasioid, itemid);
     }
 
 }

@@ -11,4 +11,6 @@ import java.util.List;
 public interface EquipoEjercicioRepository extends JpaRepository<EquipoEjercicio, EquipoEjercicioId> {
 
     List<EquipoEjercicio> findByEjercicioid(int ejercicioid);
+    List<EquipoEjercicio> findByEquipoItemid(int equipoid);
+
 }
