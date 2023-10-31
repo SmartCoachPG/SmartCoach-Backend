@@ -13,10 +13,7 @@ public class RutinaEjercicioId implements Serializable {
         this.ejercicioid = ejercicioid;
     }
 
-    public RutinaEjercicioId()
-    {
-
-    }
+    public RutinaEjercicioId() {}
 
     public Integer getRutinaId() {
         return rutinaId;

@@ -10,6 +10,5 @@ import java.util.List;
 public interface RestriccionMedicaEjercicioRepository extends JpaRepository<RestriccionMedicaEjercicio, RestriccionMedicaEjercicioId> {
 
     List<RestriccionMedicaEjercicio> findByRestriccionMedicaId(Integer restriccionMedicaId);
-
 }
 

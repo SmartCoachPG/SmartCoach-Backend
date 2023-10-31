@@ -25,7 +25,6 @@ public class UbicacionxItem implements Serializable {
     @Column(name = "gimnasioid")
     private int gimnasioid;
 
-
     public UbicacionxItem(Long id, int mapaid, int coordenadaX, int coordenadaY, int itemid, int gimnasioid) {
         this.id = id;
         this.mapaid = mapaid;
@@ -35,10 +34,8 @@ public class UbicacionxItem implements Serializable {
         this.gimnasioid = gimnasioid;
     }
 
-    public UbicacionxItem()
-    {
+    public UbicacionxItem() {}
 
-    }
     public int getMapaid() {
         return mapaid;
     }

@@ -5,7 +5,6 @@ import com.smartcoach.smartcoachBackend.Business.exercise.entities.MusculoEjerci
 import com.smartcoach.smartcoachBackend.Persistence.exercise.MusculoEjercicioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 

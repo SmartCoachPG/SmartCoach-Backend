@@ -38,10 +38,7 @@ public class Objetivo {
         this.usuarioClienteId = usuarioClienteId;
     }
 
-    public Objetivo()
-    {
-
-    }
+    public Objetivo() {}
 
     public Long getId() {
         return id;

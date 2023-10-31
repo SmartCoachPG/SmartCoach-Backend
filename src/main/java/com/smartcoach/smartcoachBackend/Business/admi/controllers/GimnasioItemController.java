@@ -1,5 +1,4 @@
 package com.smartcoach.smartcoachBackend.Business.admi.controllers;
-
 import com.smartcoach.smartcoachBackend.Business.admi.entities.GimnasioItem;
 import com.smartcoach.smartcoachBackend.Business.admi.services.GimnasioItemService;
 import org.springframework.beans.factory.annotation.Autowired;

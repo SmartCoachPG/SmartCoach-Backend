@@ -7,7 +7,6 @@ import com.smartcoach.smartcoachBackend.Business.user.entities.ProgresoxEjercici
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -42,7 +41,6 @@ public class EjercicioProgresoxEjercicioController {
 
     @GetMapping("/findByEjeIdLatest/{ejercicioId}/{usuarioId}")
     public ProgresoxEjercicio getLatestProgresoxEjercicio(@PathVariable Integer ejercicioId, @PathVariable Integer usuarioId) {
-
         return service.findProgresoxEjercicioByEjercicioId(ejercicioId,usuarioId);
     }
 }

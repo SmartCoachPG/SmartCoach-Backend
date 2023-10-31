@@ -4,7 +4,6 @@ import com.smartcoach.smartcoachBackend.Business.admi.entities.*;
 import com.smartcoach.smartcoachBackend.Persistence.admi.GimnasioItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -38,9 +37,8 @@ public class GimnasioItemService {
         for(UbicacionxItem ui: listaUI)
         {
             if(ui.getItemid()==itemid)
-            {
                 ubicacionxItemService.deleteById(ui.getId());
-            }
+
         }
         gimnasioItemRepository.deleteById(id);
     }

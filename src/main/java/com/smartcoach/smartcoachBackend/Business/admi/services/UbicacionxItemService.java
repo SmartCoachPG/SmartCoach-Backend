@@ -4,7 +4,6 @@ import com.smartcoach.smartcoachBackend.Business.admi.entities.UbicacionxItem;
 import com.smartcoach.smartcoachBackend.Persistence.admi.UbicacionxItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 

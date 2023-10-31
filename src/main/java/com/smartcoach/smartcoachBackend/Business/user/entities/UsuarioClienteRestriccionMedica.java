@@ -1,7 +1,6 @@
 package com.smartcoach.smartcoachBackend.Business.user.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 
 @Entity
@@ -24,10 +23,7 @@ public class UsuarioClienteRestriccionMedica {
         this.restriccionMedicaid = restriccionMedicaid;
     }
 
-    public UsuarioClienteRestriccionMedica()
-    {
-
-    }
+    public UsuarioClienteRestriccionMedica() {}
 
     public Integer getUsuarioClienteid() {
         return usuarioClienteid;

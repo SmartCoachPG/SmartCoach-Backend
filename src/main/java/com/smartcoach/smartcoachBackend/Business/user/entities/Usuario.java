@@ -1,7 +1,6 @@
 package com.smartcoach.smartcoachBackend.Business.user.entities;
 
 import javax.persistence.*;
-import java.util.Arrays;
 
 @Entity
 @Table(name = "usuario")
@@ -30,8 +29,7 @@ public class Usuario {
     private String token;
 
 
-    public Usuario() {
-    }
+    public Usuario() {}
 
     public Usuario(String nombre, String email, String contrasenna, String fotoPerfil,Integer admi) {
         this.nombre = nombre;

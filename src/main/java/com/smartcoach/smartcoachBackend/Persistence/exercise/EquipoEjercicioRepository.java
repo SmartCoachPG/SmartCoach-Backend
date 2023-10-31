@@ -12,5 +12,4 @@ public interface EquipoEjercicioRepository extends JpaRepository<EquipoEjercicio
 
     List<EquipoEjercicio> findByEjercicioid(int ejercicioid);
     List<EquipoEjercicio> findByEquipoItemid(int equipoid);
-
 }

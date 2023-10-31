@@ -17,10 +17,7 @@ public class RestriccionMedicaEjercicioId implements Serializable {
         this.ejercicioId = ejercicioId;
     }
 
-    public RestriccionMedicaEjercicioId()
-    {
-
-    }
+    public RestriccionMedicaEjercicioId() {}
 
     public Integer getRestriccionMedicaId() {
         return restriccionMedicaId;

@@ -1,9 +1,6 @@
 package com.smartcoach.smartcoachBackend.Business.exercise.entities;
 
-import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioCliente;
-
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Time;
 
 @Entity
@@ -46,8 +43,7 @@ public class Rutina {
         this.grupoMuscularId = grupoMuscularId;
     }
 
-    public Rutina(){
-    }
+    public Rutina(){}
 
     public int getId() {
         return id;

@@ -25,8 +25,7 @@ public class UsuarioAdministrador extends Usuario
     @Column(name = "Gimnasioid")
     private Integer gimnasioId;
 
-    public UsuarioAdministrador() {
-    }
+    public UsuarioAdministrador() {}
 
     public UsuarioAdministrador(Long cedula, String puesto, Integer verificado, Date fechaDeRenovacion, Integer gimnasioId) {
         this.cedula = cedula;

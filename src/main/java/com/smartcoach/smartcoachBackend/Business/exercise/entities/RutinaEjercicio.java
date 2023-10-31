@@ -20,10 +20,7 @@ public class RutinaEjercicio {
         this.ejercicioid = ejercicioid;
     }
 
-    public RutinaEjercicio()
-    {
-
-    }
+    public RutinaEjercicio() {}
 
     public Integer getRutinaId() {
         return rutinaId;

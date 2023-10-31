@@ -5,7 +5,6 @@ import com.smartcoach.smartcoachBackend.Business.exercise.entities.RestriccionMe
 import com.smartcoach.smartcoachBackend.Persistence.exercise.RestriccionMedicaEjercicioRepository;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

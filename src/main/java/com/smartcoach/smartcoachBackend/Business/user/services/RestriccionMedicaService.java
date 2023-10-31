@@ -4,7 +4,6 @@ import com.smartcoach.smartcoachBackend.Business.user.entities.RestriccionMedica
 import com.smartcoach.smartcoachBackend.Persistence.user.RestriccionMedicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 

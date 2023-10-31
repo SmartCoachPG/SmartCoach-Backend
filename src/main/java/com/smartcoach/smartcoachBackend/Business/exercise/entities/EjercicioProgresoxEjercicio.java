@@ -20,10 +20,7 @@ public class EjercicioProgresoxEjercicio {
         this.progresoxEjercicioId = progresoxEjercicioId;
     }
 
-    public EjercicioProgresoxEjercicio()
-    {
-
-    }
+    public EjercicioProgresoxEjercicio() {}
 
     public Integer getEjercicioId() {
         return ejercicioId;

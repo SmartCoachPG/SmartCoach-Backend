@@ -17,10 +17,7 @@ public class EjercicioProgresoxEjercicioId implements Serializable {
         this.progresoxEjercicioId = progresoxEjercicioId;
     }
 
-    public EjercicioProgresoxEjercicioId()
-    {
-
-    }
+    public EjercicioProgresoxEjercicioId() {}
 
     public Integer getEjercicioId() {
         return ejercicioId;

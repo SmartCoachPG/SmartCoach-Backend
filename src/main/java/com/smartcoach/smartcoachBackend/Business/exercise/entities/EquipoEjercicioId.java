@@ -1,15 +1,13 @@
 package com.smartcoach.smartcoachBackend.Business.exercise.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public class EquipoEjercicioId implements Serializable {
 
     private int equipoItemid;
     private int ejercicioid;
 
-    public EquipoEjercicioId() {
-    }
+    public EquipoEjercicioId() {}
 
     public EquipoEjercicioId(int equipoItemid, int ejercicioid) {
         this.equipoItemid = equipoItemid;

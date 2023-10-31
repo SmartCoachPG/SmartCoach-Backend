@@ -4,7 +4,6 @@ import com.smartcoach.smartcoachBackend.Business.user.entities.NivelActividadFis
 import com.smartcoach.smartcoachBackend.Persistence.user.NivelActividadFisicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 

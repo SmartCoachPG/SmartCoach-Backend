@@ -4,7 +4,6 @@ import com.smartcoach.smartcoachBackend.Business.exercise.entities.Ejercicio;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.EjercicioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

@@ -11,5 +11,4 @@ public interface ProgresoxEjercicioRepository extends JpaRepository<ProgresoxEje
     void deleteByUsuarioClienteId(Integer usuarioClienteId);
     List<ProgresoxEjercicio> findByUsuarioClienteId(Integer usuarioClienteId);
     List<ProgresoxEjercicio> findByIdOrderByFechaDesc(Integer id);
-
 }

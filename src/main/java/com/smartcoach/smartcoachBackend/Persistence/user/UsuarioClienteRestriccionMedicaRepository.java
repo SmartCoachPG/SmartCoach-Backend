@@ -11,5 +11,4 @@ import java.util.List;
 public interface UsuarioClienteRestriccionMedicaRepository extends JpaRepository<UsuarioClienteRestriccionMedica, UsuarioClienteRestriccionMedicaId> {
     void deleteByUsuarioClienteid(Integer usuarioClienteUsuarioid);
     List<UsuarioClienteRestriccionMedica> findByUsuarioClienteid(Integer usuarioClienteId);
-
 }

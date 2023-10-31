@@ -1,7 +1,6 @@
 package com.smartcoach.smartcoachBackend.Business.admi.controllers;
 
 import com.smartcoach.smartcoachBackend.Business.admi.entities.Equipo;
-import com.smartcoach.smartcoachBackend.Business.admi.entities.Item;
 import com.smartcoach.smartcoachBackend.Business.admi.entities.TipoEquipo;
 import com.smartcoach.smartcoachBackend.Business.admi.services.EquipoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +59,5 @@ public class EquipoController {
     public TipoEquipo findTipoEquipoNameByEquipoId(@PathVariable Long idItem) {
         return service.findTipoEquipoNameByEquipoId(idItem);
     }
-
-
 
 }

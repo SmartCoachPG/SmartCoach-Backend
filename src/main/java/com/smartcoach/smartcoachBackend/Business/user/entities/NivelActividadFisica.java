@@ -22,10 +22,7 @@ public class NivelActividadFisica {
         this.descripcion = descripcion;
     }
 
-    public NivelActividadFisica()
-    {
-
-    }
+    public NivelActividadFisica() {}
 
     public Integer getId() {
         return id;

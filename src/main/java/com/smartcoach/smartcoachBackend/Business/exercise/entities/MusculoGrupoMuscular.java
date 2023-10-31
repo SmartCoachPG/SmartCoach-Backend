@@ -21,9 +21,8 @@ public class MusculoGrupoMuscular {
         this.grupoMuscularId = grupoMuscularId;
     }
 
-    public MusculoGrupoMuscular(){
+    public MusculoGrupoMuscular(){}
 
-    }
     public Integer getMusculoId() {
         return musculoId;
     }

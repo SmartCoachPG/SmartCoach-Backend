@@ -18,10 +18,7 @@ public class Musculo {
         this.nombreMusculo = nombreMusculo;
     }
 
-    public Musculo()
-    {
-
-    }
+    public Musculo() {}
 
     public Long getId() {
         return id;

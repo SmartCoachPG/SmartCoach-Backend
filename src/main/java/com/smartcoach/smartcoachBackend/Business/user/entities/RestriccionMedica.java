@@ -19,10 +19,7 @@ public class RestriccionMedica {
         this.nombreLimitacion = nombreLimitacion;
     }
 
-    public RestriccionMedica()
-    {
-
-    }
+    public RestriccionMedica() {}
 
     public int getId() {
         return id;

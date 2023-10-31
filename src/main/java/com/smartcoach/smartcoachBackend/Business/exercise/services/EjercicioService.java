@@ -1,7 +1,6 @@
 package com.smartcoach.smartcoachBackend.Business.exercise.services;
 
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.Ejercicio;
-import com.smartcoach.smartcoachBackend.Business.exercise.entities.GrupoMuscular;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.MusculoEjercicio;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.MusculoGrupoMuscular;
 import com.smartcoach.smartcoachBackend.Persistence.exercise.EjercicioRepository;
@@ -9,10 +8,8 @@ import com.smartcoach.smartcoachBackend.Persistence.exercise.MusculoEjercicioRep
 import com.smartcoach.smartcoachBackend.Persistence.exercise.MusculoGrupoMuscularRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +18,15 @@ public class EjercicioService {
 
     @Autowired
     private EjercicioRepository ejercicioRepository;
+
     @Autowired
     private MusculoEjercicioRepository musculoEjercicioRepository;
+
     @Autowired
     private MusculoGrupoMuscularRepository musculoGrupoMuscularRepository;
+
+    @PersistenceContext
+    EntityManager em;
 
     public List<Ejercicio> findAll() {
         return ejercicioRepository.findAll();
@@ -42,16 +44,12 @@ public class EjercicioService {
         ejercicioRepository.deleteById(id);
     }
 
-    @PersistenceContext
-    EntityManager em;
-
     public List<Ejercicio> findEjerciciosByEquipoItemId(int equipoItemId) {
         return ejercicioRepository.findEjerciciosByEquipoItemId(equipoItemId);
     }
 
     public List<Integer> findGrupoMuscular(int ejercicioId)
     {
-
         List<MusculoEjercicio> listaM = musculoEjercicioRepository.findByEjercicioId(ejercicioId);
         List<MusculoGrupoMuscular> listaMGM = new ArrayList<>();
         for(MusculoEjercicio me : listaM)

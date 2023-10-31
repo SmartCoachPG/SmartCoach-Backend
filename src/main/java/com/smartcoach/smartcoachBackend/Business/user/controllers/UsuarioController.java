@@ -1,16 +1,11 @@
 package com.smartcoach.smartcoachBackend.Business.user.controllers;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.smartcoach.smartcoachBackend.Business.admi.entities.UsuarioAdministrador;
+
 import com.smartcoach.smartcoachBackend.Business.user.entities.Usuario;
-import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioCliente;
 import com.smartcoach.smartcoachBackend.Business.user.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -39,7 +34,6 @@ public class UsuarioController {
 
     @PutMapping("/{id}")
     public Usuario updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
-        // Aquí puedes agregar lógica para actualizar el usuario.
         return usuarioService.save(usuario);
     }
 

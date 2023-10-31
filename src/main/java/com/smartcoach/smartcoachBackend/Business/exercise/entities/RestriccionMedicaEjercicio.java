@@ -20,10 +20,7 @@ public class RestriccionMedicaEjercicio {
         this.ejercicioId = ejercicioId;
     }
 
-    public RestriccionMedicaEjercicio()
-    {
-
-    }
+    public RestriccionMedicaEjercicio() {}
 
     public Integer getRestriccionMedicaId() {
         return restriccionMedicaId;

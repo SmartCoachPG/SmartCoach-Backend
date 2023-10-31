@@ -19,10 +19,7 @@ public class UnidadMetrica {
         this.metrica = metrica;
     }
 
-    public UnidadMetrica()
-    {
-
-    }
+    public UnidadMetrica() {}
 
     public int getId() {
         return id;

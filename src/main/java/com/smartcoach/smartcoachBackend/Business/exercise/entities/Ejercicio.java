@@ -1,7 +1,6 @@
 package com.smartcoach.smartcoachBackend.Business.exercise.entities;
 
 import javax.persistence.*;
-import java.sql.Time;
 
 @Entity
 @Table(name = "ejercicio")
@@ -21,10 +20,7 @@ public class Ejercicio {
     private String instruccionRespiracion;
 
 
-    public Ejercicio()
-    {
-
-    }
+    public Ejercicio() {}
 
     public Ejercicio(Long id, String nombre, String instruccionEjecucion, String instruccionRespiracion) {
         this.id = id;

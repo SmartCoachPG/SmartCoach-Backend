@@ -4,7 +4,6 @@ import com.smartcoach.smartcoachBackend.Business.user.entities.RestriccionMedica
 import com.smartcoach.smartcoachBackend.Business.user.services.RestriccionMedicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -24,7 +23,6 @@ public class RestriccionMedicaController {
             return restriccionMedicaService.findAll();
         }
     }
-
 
     @GetMapping()
     public List<RestriccionMedica> findAll() {

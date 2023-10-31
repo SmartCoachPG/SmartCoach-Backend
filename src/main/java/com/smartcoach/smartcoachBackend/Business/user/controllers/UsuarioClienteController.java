@@ -1,6 +1,6 @@
 package com.smartcoach.smartcoachBackend.Business.user.controllers;
+
 import com.smartcoach.smartcoachBackend.Business.admi.entities.Equipo;
-import com.smartcoach.smartcoachBackend.Business.admi.entities.Item;
 import com.smartcoach.smartcoachBackend.Business.admi.services.EquipoService;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.*;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.*;
@@ -11,8 +11,6 @@ import com.smartcoach.smartcoachBackend.Persistence.exercise.MusculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
 import java.sql.Time;
 import java.util.*;
@@ -109,9 +107,7 @@ public class UsuarioClienteController {
     public ResponseEntity<Void> crearRutina(@PathVariable Long id)
     {
         // 0. Get usuario
-        System.out.println("Tengo usuario:"+id);
         Optional<UsuarioCliente> cliente = usuarioClienteService.findById(id);
-        System.out.println(cliente.get().getNombre());
         // 1.Asignar grupoMuscular a Rutina
         List<Rutina> listaRutinas = rutinaService.asignarGM(id.intValue(),cliente.get().getGrupoMuscularid());
         // 2.Consultar equipo gym
@@ -120,19 +116,16 @@ public class UsuarioClienteController {
         {
             equipoD = equipoService.findEquiposByGimnasioId(cliente.get().getGimnasioid());
         }
-        System.out.println("Equipo"+equipoD);
         // 3.Consultar equipo personal
 
         equipoD.addAll(equipoService.findEquiposByUsuarioId(cliente.get().getId().intValue()));
         equipoD.add(equipoService.getById((long)15));
-        System.out.println("Equipo personal:"+equipoD);
         //4. Filtrar ejercicios por equipo total
         List<Ejercicio> listaEjercicios = new ArrayList<>();
         for(Equipo equipo: equipoD)
         {
             listaEjercicios.addAll(ejercicioService.findEjerciciosByEquipoItemId(equipo.getId().intValue()));
         }
-        System.out.println("Ejercicios"+listaEjercicios);
         //5.Filtrar ejercicios por limitacion fisica
         List <Integer> restriccionesM = usuarioClienteRestriccionMedicaService.findRestriccionesByUsuarioClienteId(cliente.get().getId());
         List<Integer> idEjerciciosX = new ArrayList<>();
@@ -161,7 +154,6 @@ public class UsuarioClienteController {
             }
         }
 
-        System.out.println(asignados);
         // 7. Obtener objetivo Rutina = repeticiones
         int objetivoR = cliente.get().getObjetivoRutinaid();
         Map<Integer,Integer> repeticiones = new HashMap<>();
@@ -238,10 +230,8 @@ public class UsuarioClienteController {
             Collections.sort(listWithoutDuplicates);
             entry.setValue(listWithoutDuplicates);
         }
-
         return retorno;
     }
-
 
     @GetMapping("/validarRutina/{idUsuario}")
     public Boolean validarRutina(@PathVariable Long idUsuario)

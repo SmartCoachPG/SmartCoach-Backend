@@ -6,7 +6,6 @@ import com.smartcoach.smartcoachBackend.Business.exercise.entities.RutinaEjercic
 import com.smartcoach.smartcoachBackend.Persistence.exercise.RutinaEjercicioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,13 +48,11 @@ public class RutinaEjercicioService {
     public List<Ejercicio> getEjerciciosByRutinaId(Integer rutinaId) {
         List<Ejercicio> ejercicios = new ArrayList<>();
 
-        for(RutinaEjercicio re: repository.findByRutinaId(rutinaId))
-        {
+        for (RutinaEjercicio re : repository.findByRutinaId(rutinaId)) {
             int idE = re.getEjercicioid();
             ejercicios.add(ejercicioService.findById(Long.valueOf(idE)));
         }
-        return  ejercicios;
-
+        return ejercicios;
     }
 
 }

@@ -11,5 +11,4 @@ public interface RutinaRepository extends JpaRepository<Rutina, Integer> {
 
     void deleteByUsuarioClienteId(int usuarioClienteId);
     List<Rutina> findByUsuarioClienteId(int usuarioClienteId);
-
 }

@@ -6,7 +6,6 @@ import com.smartcoach.smartcoachBackend.Business.exercise.entities.RutinaEjercic
 import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaEjercicioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 

@@ -13,5 +13,4 @@ public interface EjercicioRepository extends JpaRepository<Ejercicio, Long> {
 
     @Query(value = "SELECT * FROM Ejercicio e WHERE e.id IN (SELECT ee.ejercicioid FROM Equipo_Ejercicio ee WHERE ee.equipoitemid = ?1)", nativeQuery = true)
     List<Ejercicio> findEjerciciosByEquipoItemId(int equipoitemid);
-
 }

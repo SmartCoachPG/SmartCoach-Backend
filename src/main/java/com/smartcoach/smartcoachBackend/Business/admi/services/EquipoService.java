@@ -1,7 +1,6 @@
 package com.smartcoach.smartcoachBackend.Business.admi.services;
 
 import com.smartcoach.smartcoachBackend.Business.admi.entities.Equipo;
-import com.smartcoach.smartcoachBackend.Business.admi.entities.Item;
 import com.smartcoach.smartcoachBackend.Business.admi.entities.TipoEquipo;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.EquipoEjercicio;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.MusculoEjercicio;
@@ -12,11 +11,9 @@ import com.smartcoach.smartcoachBackend.Persistence.admi.EquipoRepository;
 import com.smartcoach.smartcoachBackend.Persistence.admi.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +64,6 @@ public class EquipoService {
             itemRepository.deleteById(equipo.getId());
         }
         repository.deleteByUsuarioId(usuarioClienteId);
-
     }
 
     @PersistenceContext
@@ -103,9 +99,7 @@ public class EquipoService {
         List<Integer> equipoEjercicios = equipoEjercicioService.findEquipoItemidsByEjercicioid(idEjercicio.intValue());
 
         for(Integer id: equipoEjercicios)
-        {
             nombreEquipos.add(repository.findById(id.longValue()).get().getNombre());
-        }
 
         return nombreEquipos;
     }
@@ -125,14 +119,12 @@ public class EquipoService {
         System.out.println(equipoEjercicio.toString());
         List<MusculoEjercicio> listaM = new ArrayList<>();
         for(EquipoEjercicio ee : equipoEjercicio)
-        {
             listaM.addAll(musculoEjercicioService.findByEjercicioId(Long.valueOf(ee.getEjercicioid())));
-        }
+
         System.out.println(listaM);
         for(MusculoEjercicio me: listaM)
-        {
             nombreMusculos.add(musculoService.findById(Long.valueOf(me.getMusculoId())).getNombreMusculo());
-        }
+
         return  nombreMusculos;
     }
 

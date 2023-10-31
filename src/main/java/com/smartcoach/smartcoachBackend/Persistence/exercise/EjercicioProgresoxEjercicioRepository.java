@@ -10,5 +10,4 @@ public interface EjercicioProgresoxEjercicioRepository extends JpaRepository<Eje
 
     void deleteByProgresoxEjercicioId(Integer progresoxEjercicioId);
     List<EjercicioProgresoxEjercicio> findByEjercicioId(Integer ejercicioId);
-
 }

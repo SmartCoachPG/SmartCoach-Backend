@@ -1,7 +1,5 @@
 package com.smartcoach.smartcoachBackend.Business.exercise.services;
 
-import com.smartcoach.smartcoachBackend.Business.exercise.controllers.EjercicioProgresoxEjercicioController;
-import com.smartcoach.smartcoachBackend.Business.exercise.entities.Ejercicio;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.EjercicioProgresoxEjercicio;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.EjercicioProgresoxEjercicioId;
 import com.smartcoach.smartcoachBackend.Business.user.entities.ProgresoxEjercicio;
@@ -9,8 +7,6 @@ import com.smartcoach.smartcoachBackend.Business.user.services.ProgresoxEjercici
 import com.smartcoach.smartcoachBackend.Persistence.exercise.EjercicioProgresoxEjercicioRepository;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,9 +53,7 @@ public class EjercicioProgresoxEjercicioService {
         if (!filteredAndSortedPxeList.isEmpty()) {
             return filteredAndSortedPxeList.get(0);
         }
-
         return  null;
     }
-
 
 }

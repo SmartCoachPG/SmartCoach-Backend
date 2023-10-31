@@ -10,5 +10,4 @@ import java.util.List;
 public interface ImagenEjercicioRepository extends JpaRepository<ImagenEjercicio, Long> {
 
     List<ImagenEjercicio> findByEjercicioid(int ejercicioid);
-
 }

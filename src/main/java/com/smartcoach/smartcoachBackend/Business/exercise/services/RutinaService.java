@@ -12,12 +12,9 @@ import com.smartcoach.smartcoachBackend.Persistence.exercise.GrupoMuscularReposi
 import com.smartcoach.smartcoachBackend.Persistence.exercise.RutinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
-import java.sql.SQLOutput;
 import java.sql.Time;
 import java.util.*;
-import java.util.concurrent.RecursiveTask;
 
 @Service
 public class RutinaService {
@@ -84,9 +81,7 @@ public class RutinaService {
     }
 
     public List<Rutina> asignarGM (int id,int idGrupoM) {
-        System.out.println("DENTRO DE ASIGNA GM : RUTINA SERVICE");
         List<Rutina> rutinas = rutinaRepository.findByUsuarioClienteId(id);
-        System.out.println(rutinas.toString());
 
         rutinas = ordernar(rutinas);
         List<GrupoMuscular> grupoMusculares = grupoMuscularRepository.findAll();
@@ -99,9 +94,7 @@ public class RutinaService {
         int band = 0;
         int UgrupoMuscular = grupoMuscularO.get().getUbicacion();
 
-        System.out.println("VAMOS A VER SI ENTRO");
         for (Rutina rutina : rutinas) {
-            System.out.println("ENTRO");
             if (band == UgrupoMuscular) {
                 if (contadorGM.get(grupoMuscularO.get().getId().intValue()).intValue() < 3) {
                     rutina.setGrupoMuscularId(grupoMuscularO.get().getId().intValue());
@@ -123,7 +116,6 @@ public class RutinaService {
         }
 
         return rutinas;
-
     }
 
     public int diaANumero(String dia) {
@@ -193,7 +185,6 @@ public class RutinaService {
         List<CajaRutina> opciones = new ArrayList<>();
 
         // 0. Get usuario
-        System.out.println("Tengo usuario:"+idUsuario);
         Optional<UsuarioCliente> cliente = usuarioClienteService.findById(Long.valueOf(idUsuario));
 
         // 1.Asignar grupoMuscular a Rutina
@@ -205,12 +196,10 @@ public class RutinaService {
         {
             equipoD = equipoService.findEquiposByGimnasioId(cliente.get().getGimnasioid());
         }
-        System.out.println("Equipo"+equipoD);
 
         // 3.Consultar equipo personal
         equipoD.addAll(equipoService.findEquiposByUsuarioId(cliente.get().getId().intValue()));
         equipoD.add(equipoService.getById((long)15));
-        System.out.println("Equipo personal:"+equipoD);
 
         //4. Filtrar ejercicios por equipo total
         List<Ejercicio> listaEjercicios = new ArrayList<>();
@@ -218,7 +207,6 @@ public class RutinaService {
         {
             listaEjercicios.addAll(ejercicioService.findEjerciciosByEquipoItemId(equipo.getId().intValue()));
         }
-        System.out.println("Ejercicios"+listaEjercicios);
 
         //5.Filtrar ejercicios por limitacion fisica
         List <Integer> restriccionesM = usuarioClienteRestriccionMedicaService.findRestriccionesByUsuarioClienteId(cliente.get().getId());
@@ -292,7 +280,6 @@ public class RutinaService {
                 cajaRut.setProgresoxEjercicio(progresoxEjercicio);
             }
         }
-
 
         // 11. Buscar imagenes
         for(CajaRutina cajaRutina : opciones)

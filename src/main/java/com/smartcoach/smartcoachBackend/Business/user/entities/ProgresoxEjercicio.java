@@ -47,8 +47,7 @@ public class ProgresoxEjercicio {
         this.usuarioClienteId = usuarioClienteId;
     }
 
-    public ProgresoxEjercicio() {
-    }
+    public ProgresoxEjercicio() {}
 
     public Long getId() {
         return id;

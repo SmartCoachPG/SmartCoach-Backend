@@ -1,6 +1,5 @@
 package com.smartcoach.smartcoachBackend.Business.exercise.entities;
 
-
 import javax.persistence.*;
 
 @Entity
@@ -23,10 +22,7 @@ public class GrupoMuscular {
         this.ubicacion = ubicacion;
     }
 
-    public GrupoMuscular()
-    {
-
-    }
+    public GrupoMuscular() {}
 
     public Long getId() {
         return id;

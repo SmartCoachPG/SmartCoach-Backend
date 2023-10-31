@@ -2,7 +2,6 @@ package com.smartcoach.smartcoachBackend.Business.user.entities;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name="usuariocliente")
@@ -29,8 +28,7 @@ public class UsuarioCliente extends Usuario{
     private Integer grupoMuscularid;
 
 
-    public UsuarioCliente() {
-    }
+    public UsuarioCliente() {}
 
     public UsuarioCliente(String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, Integer grupoMuscularid) {
         this.genero = genero;

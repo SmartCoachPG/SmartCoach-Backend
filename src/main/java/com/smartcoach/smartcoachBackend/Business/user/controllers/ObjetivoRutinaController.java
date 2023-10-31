@@ -5,7 +5,6 @@ import com.smartcoach.smartcoachBackend.Business.user.services.ObjetivoRutinaSer
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -41,9 +40,6 @@ public class ObjetivoRutinaController {
         List<ObjetivoRutina> objetivoRutinas = objetivoRutinaService.findAll();
         return ResponseEntity.ok(objetivoRutinas);
     }
-
-
-
 
     @PutMapping
     public ObjetivoRutina update(@RequestBody ObjetivoRutina objetivoRutina) {

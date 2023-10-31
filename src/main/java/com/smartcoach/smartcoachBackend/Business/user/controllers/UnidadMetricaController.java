@@ -4,7 +4,6 @@ import com.smartcoach.smartcoachBackend.Business.user.entities.UnidadMetrica;
 import com.smartcoach.smartcoachBackend.Business.user.services.UnidadMetricaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

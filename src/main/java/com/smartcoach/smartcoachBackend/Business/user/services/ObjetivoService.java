@@ -4,7 +4,6 @@ import com.smartcoach.smartcoachBackend.Business.user.entities.Objetivo;
 import com.smartcoach.smartcoachBackend.Persistence.user.ObjetivoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

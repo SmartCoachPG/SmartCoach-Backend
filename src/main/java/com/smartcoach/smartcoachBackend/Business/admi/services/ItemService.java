@@ -1,15 +1,9 @@
 package com.smartcoach.smartcoachBackend.Business.admi.services;
 
-import com.smartcoach.smartcoachBackend.Business.admi.entities.Equipo;
 import com.smartcoach.smartcoachBackend.Business.admi.entities.Item;
-import com.smartcoach.smartcoachBackend.Persistence.admi.EquipoRepository;
 import com.smartcoach.smartcoachBackend.Persistence.admi.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Service
@@ -33,9 +27,5 @@ public class ItemService {
     public void deleteById(Long id) {
         itemRepository.deleteById(id);
     }
-
-
-
-
 
 }

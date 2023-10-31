@@ -1,12 +1,10 @@
 package com.smartcoach.smartcoachBackend.Business.user.services;
 
-import com.smartcoach.smartcoachBackend.Business.user.entities.RestriccionMedica;
 import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioClienteRestriccionMedica;
 import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioClienteRestriccionMedicaId;
 import com.smartcoach.smartcoachBackend.Persistence.user.UsuarioClienteRestriccionMedicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 

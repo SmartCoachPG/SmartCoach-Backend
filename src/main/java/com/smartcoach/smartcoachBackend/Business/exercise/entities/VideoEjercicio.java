@@ -23,10 +23,7 @@ public class VideoEjercicio {
         this.ejercicio = ejercicio;
     }
 
-    public VideoEjercicio()
-    {
-
-    }
+    public VideoEjercicio() {}
 
     public Long getId() {
         return id;

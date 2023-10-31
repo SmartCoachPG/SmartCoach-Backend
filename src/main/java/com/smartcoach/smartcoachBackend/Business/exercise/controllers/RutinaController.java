@@ -5,7 +5,6 @@ import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaService
 import com.smartcoach.smartcoachBackend.Business.user.entities.CajaRutina;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

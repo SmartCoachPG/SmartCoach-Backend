@@ -6,9 +6,7 @@ public class MusculoGrupoMuscularId implements Serializable {
     private Integer musculoId;
     private Integer grupoMuscularId;
 
-    public MusculoGrupoMuscularId(){
-
-    }
+    public MusculoGrupoMuscularId(){}
 
     public MusculoGrupoMuscularId(Integer musculoId, Integer grupoMuscularId) {
         this.musculoId = musculoId;

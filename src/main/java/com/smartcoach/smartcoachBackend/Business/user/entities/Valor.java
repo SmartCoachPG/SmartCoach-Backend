@@ -28,10 +28,7 @@ public class Valor {
         this.valorEvaluacionFisicaid = valorEvaluacionFisicaid;
     }
 
-    public Valor()
-    {
-
-    }
+    public Valor() {}
 
     public int getId() {
         return id;

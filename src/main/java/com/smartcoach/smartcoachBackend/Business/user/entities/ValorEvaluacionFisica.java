@@ -27,9 +27,7 @@ public class ValorEvaluacionFisica {
         this.unidadMetricaId = unidadMetricaId;
     }
 
-    public ValorEvaluacionFisica(){
-
-    }
+    public ValorEvaluacionFisica(){}
 
     public int getId() {
         return id;

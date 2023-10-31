@@ -4,7 +4,6 @@ import com.smartcoach.smartcoachBackend.Business.user.entities.ValorEvaluacionFi
 import com.smartcoach.smartcoachBackend.Business.user.services.ValorEvaluacionFisicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

@@ -23,10 +23,7 @@ public class Item {
         this.nombre = nombre;
     }
 
-    public Item()
-    {
-
-    }
+    public Item() {}
 
     public Long getId() {
         return id;

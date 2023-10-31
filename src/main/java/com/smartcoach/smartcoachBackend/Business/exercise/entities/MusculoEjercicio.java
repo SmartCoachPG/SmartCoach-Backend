@@ -20,10 +20,7 @@ public class MusculoEjercicio {
         this.ejercicioId = ejercicioId;
     }
 
-    public MusculoEjercicio()
-    {
-
-    }
+    public MusculoEjercicio() {}
 
     public int getMusculoId() {
         return musculoId;

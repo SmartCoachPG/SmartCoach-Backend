@@ -3,11 +3,8 @@ package com.smartcoach.smartcoachBackend.Business.user.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.Ejercicio;
-import com.smartcoach.smartcoachBackend.Business.exercise.entities.GrupoMuscular;
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.Rutina;
-import com.smartcoach.smartcoachBackend.Business.exercise.entities.RutinaEjercicio;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.EjercicioService;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaEjercicioService;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaService;
@@ -16,8 +13,6 @@ import com.smartcoach.smartcoachBackend.Persistence.user.UsuarioClienteRepositor
 import com.smartcoach.smartcoachBackend.Security.PasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Service
 public class UsuarioClienteService {
@@ -76,10 +71,9 @@ public class UsuarioClienteService {
 
         if(listaEje.isEmpty())
         {
-            System.out.println("Usuario no tiene ejercicios en sus rutinas");
             return false;
         }
-        // La rutina que tiene es para tu musculo objetivo?
+        // La rutina que tiene es para su musculo objetivo?
         int grupoMuscularO = usuarioClienteRepository.getById(idUsuario).getGrupoMuscularid();
         boolean tieneGM = false;
         for(Ejercicio ej: listaEje)
@@ -94,7 +88,6 @@ public class UsuarioClienteService {
                 }
             }
         }
-        System.out.println("Usuario no tiene ejercicios para el grupo muscular objetivo");
         return tieneGM;
     }
 

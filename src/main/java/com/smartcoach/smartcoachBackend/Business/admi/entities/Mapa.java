@@ -34,10 +34,7 @@ public class Mapa {
         this.gimnasioId = gimnasioId;
     }
 
-    public Mapa()
-    {
-
-    }
+    public Mapa() {}
 
     public Long getId() {
         return id;

@@ -7,8 +7,7 @@ public class UsuarioClienteRestriccionMedicaId implements Serializable {
     private Integer usuarioClienteid;
     private Integer restriccionMedicaid;
 
-    public UsuarioClienteRestriccionMedicaId() {
-    }
+    public UsuarioClienteRestriccionMedicaId() {}
 
     public UsuarioClienteRestriccionMedicaId(Integer usuarioClienteUsuarioid, Integer restriccionMedicaid) {
         this.usuarioClienteid = usuarioClienteUsuarioid;

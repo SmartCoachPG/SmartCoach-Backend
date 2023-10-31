@@ -1,15 +1,10 @@
 package com.smartcoach.smartcoachBackend.Business.exercise.controllers;
 
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.Musculo;
-import com.smartcoach.smartcoachBackend.Business.exercise.entities.MusculoEjercicio;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.MusculoService;
-import com.smartcoach.smartcoachBackend.Business.user.entities.ObjetivoRutina;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -50,6 +45,5 @@ public class MusculoController {
     {
        return musculoService.findMusculosByEjercicioId(ejercicioId);
     }
-
 
 }

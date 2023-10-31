@@ -23,10 +23,7 @@ public class ImagenEjercicio {
         this.ejercicioid = ejercicioid;
     }
 
-    public ImagenEjercicio()
-    {
-
-    }
+    public ImagenEjercicio() {}
 
     public Long getId() {
         return id;

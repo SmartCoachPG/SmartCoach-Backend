@@ -1,15 +1,12 @@
 package com.smartcoach.smartcoachBackend.Business.admi.services;
 
 import com.smartcoach.smartcoachBackend.Business.admi.entities.*;
-import com.smartcoach.smartcoachBackend.Business.user.entities.Usuario;
 import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioCliente;
 import com.smartcoach.smartcoachBackend.Business.user.services.UsuarioClienteService;
 import com.smartcoach.smartcoachBackend.Persistence.admi.GimnasioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class GimnasioService {
@@ -40,6 +37,7 @@ public class GimnasioService {
     }
 
     public void deleteById(Long id) {
+
         // 1.null id a usuario admi
         List<UsuarioAdministrador> listaAdmi = usuarioAdministradorService.findAll();
         for(UsuarioAdministrador admi : listaAdmi)

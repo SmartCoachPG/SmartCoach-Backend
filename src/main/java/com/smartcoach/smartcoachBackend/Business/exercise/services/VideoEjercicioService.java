@@ -4,7 +4,6 @@ import com.smartcoach.smartcoachBackend.Business.exercise.entities.VideoEjercici
 import com.smartcoach.smartcoachBackend.Persistence.exercise.VideoEjercicioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

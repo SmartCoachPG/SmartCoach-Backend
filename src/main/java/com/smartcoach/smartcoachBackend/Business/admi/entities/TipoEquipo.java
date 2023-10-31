@@ -18,10 +18,7 @@ public class TipoEquipo {
         this.nombre = nombre;
     }
 
-    public TipoEquipo()
-    {
-
-    }
+    public TipoEquipo() {}
 
     public Long getId() {
         return id;
