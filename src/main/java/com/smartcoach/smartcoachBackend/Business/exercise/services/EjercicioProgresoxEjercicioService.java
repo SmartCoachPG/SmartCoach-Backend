@@ -47,7 +47,6 @@ public class EjercicioProgresoxEjercicioService {
     public ProgresoxEjercicio findProgresoxEjercicioByEjercicioId(Integer ejercicioId,Integer usuarioId) {
 
         List<EjercicioProgresoxEjercicio> epeList = repository.findByEjercicioId(ejercicioId);
-
         // Filtrar la lista por usuarioId y ordenarla por fecha de manera descendente
         List<ProgresoxEjercicio> filteredAndSortedPxeList = epeList.stream()
                 .map(epe -> progresoxEjercicioService.findById(Long.valueOf(epe.getProgresoxEjercicioId())))

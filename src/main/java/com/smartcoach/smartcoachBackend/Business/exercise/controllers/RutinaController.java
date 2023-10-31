@@ -2,6 +2,7 @@ package com.smartcoach.smartcoachBackend.Business.exercise.controllers;
 
 import com.smartcoach.smartcoachBackend.Business.exercise.entities.Rutina;
 import com.smartcoach.smartcoachBackend.Business.exercise.services.RutinaService;
+import com.smartcoach.smartcoachBackend.Business.user.entities.CajaRutina;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,4 +40,9 @@ public class RutinaController {
         return rutinaService.getByUsuarioClienteId(id);
     }
 
+    @GetMapping("/getEjercicioRut/{idUsuario}/{idRut}")
+    public List<CajaRutina> getEjerciciosByRutina(@PathVariable int idUsuario,@PathVariable int idRut)
+    {
+        return rutinaService.getEjerciciosByRutina(idUsuario,idRut);
+    }
 }

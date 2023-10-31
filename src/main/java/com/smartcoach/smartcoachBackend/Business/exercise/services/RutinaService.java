@@ -1,7 +1,13 @@
 package com.smartcoach.smartcoachBackend.Business.exercise.services;
 
-import com.smartcoach.smartcoachBackend.Business.exercise.entities.GrupoMuscular;
-import com.smartcoach.smartcoachBackend.Business.exercise.entities.Rutina;
+import com.smartcoach.smartcoachBackend.Business.admi.entities.Equipo;
+import com.smartcoach.smartcoachBackend.Business.admi.services.EquipoService;
+import com.smartcoach.smartcoachBackend.Business.exercise.entities.*;
+import com.smartcoach.smartcoachBackend.Business.user.entities.CajaRutina;
+import com.smartcoach.smartcoachBackend.Business.user.entities.ProgresoxEjercicio;
+import com.smartcoach.smartcoachBackend.Business.user.entities.UsuarioCliente;
+import com.smartcoach.smartcoachBackend.Business.user.services.UsuarioClienteRestriccionMedicaService;
+import com.smartcoach.smartcoachBackend.Business.user.services.UsuarioClienteService;
 import com.smartcoach.smartcoachBackend.Persistence.exercise.GrupoMuscularRepository;
 import com.smartcoach.smartcoachBackend.Persistence.exercise.RutinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.SQLOutput;
+import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.RecursiveTask;
 
@@ -20,6 +27,33 @@ public class RutinaService {
 
     @Autowired
     private GrupoMuscularRepository grupoMuscularRepository;
+
+    @Autowired
+    private UsuarioClienteService usuarioClienteService;
+
+    @Autowired
+    private RutinaService rutinaService;
+
+    @Autowired
+    private EquipoService equipoService;
+
+    @Autowired
+    private EjercicioService ejercicioService;
+
+    @Autowired
+    private UsuarioClienteRestriccionMedicaService usuarioClienteRestriccionMedicaService;
+
+    @Autowired
+    private RestriccionMedicaEjercicioService restriccionMedicaEjercicioService;
+
+    @Autowired
+    private EjercicioProgresoxEjercicioService ejercicioProgresoxEjercicioService;
+
+    @Autowired
+    private EquipoEjercicioService equipoEjercicioService;
+
+    @Autowired
+    private ImagenEjercicioService imagenEjercicioService;
 
     Map<Integer, Long> contadorGM = new HashMap<>();
 
@@ -154,6 +188,119 @@ public class RutinaService {
         return retorno;
     }
 
+    public List<CajaRutina> getEjerciciosByRutina(int idUsuario, int idRut)
+    {
+        List<CajaRutina> opciones = new ArrayList<>();
 
+        // 0. Get usuario
+        System.out.println("Tengo usuario:"+idUsuario);
+        Optional<UsuarioCliente> cliente = usuarioClienteService.findById(Long.valueOf(idUsuario));
+
+        // 1.Asignar grupoMuscular a Rutina
+        Rutina rutina = rutinaService.findById(idRut);
+
+        // 2.Consultar equipo gym
+        List<Equipo> equipoD = new ArrayList<>();
+        if(cliente.get().getGimnasioid()!=null)
+        {
+            equipoD = equipoService.findEquiposByGimnasioId(cliente.get().getGimnasioid());
+        }
+        System.out.println("Equipo"+equipoD);
+
+        // 3.Consultar equipo personal
+        equipoD.addAll(equipoService.findEquiposByUsuarioId(cliente.get().getId().intValue()));
+        equipoD.add(equipoService.getById((long)15));
+        System.out.println("Equipo personal:"+equipoD);
+
+        //4. Filtrar ejercicios por equipo total
+        List<Ejercicio> listaEjercicios = new ArrayList<>();
+        for(Equipo equipo: equipoD)
+        {
+            listaEjercicios.addAll(ejercicioService.findEjerciciosByEquipoItemId(equipo.getId().intValue()));
+        }
+        System.out.println("Ejercicios"+listaEjercicios);
+
+        //5.Filtrar ejercicios por limitacion fisica
+        List <Integer> restriccionesM = usuarioClienteRestriccionMedicaService.findRestriccionesByUsuarioClienteId(cliente.get().getId());
+        List<Integer> idEjerciciosX = new ArrayList<>();
+        for(Integer restriccion : restriccionesM)
+        {
+            idEjerciciosX.addAll(restriccionMedicaEjercicioService.findEjerciciosByRestriccionMedicaId((long)restriccion));
+        }
+        listaEjercicios.removeIf(ejercicio -> idEjerciciosX.contains(ejercicio.getId().intValue()));
+
+        // 6.Filtrar ejercicios por grupo muscular
+        for(Ejercicio eje:listaEjercicios)
+        {
+            if(ejercicioService.findGrupoMuscular(eje.getId().intValue()).contains(rutina.getGrupoMuscularId()))
+            {
+                CajaRutina cajarut = new CajaRutina();
+                cajarut.setEjercicio(eje);
+                opciones.add(cajarut);
+            }
+        }
+
+        // 7. Obtener objetivo Rutina = repeticiones
+        int objetivoR = cliente.get().getObjetivoRutinaid();
+        Map<Integer,Integer> repeticiones = new HashMap<>();
+        repeticiones.put(1,15);
+        repeticiones.put(2,8);
+        repeticiones.put(3,5);
+
+        Map<Integer, Time>  descansos = new HashMap<>();
+        descansos.put(1, Time.valueOf("00:01:00"));
+        descansos.put(2, Time.valueOf("00:01:30"));
+        descansos.put(3, Time.valueOf("00:03:00"));
+
+        // 8. Obtener nivel actividad = peso
+        int nivelA = cliente.get().getNivelActividadFisicaid();
+        Map<Integer,Integer> pesos = new HashMap<>();
+        // medidas en libras
+        pesos.put(1,0);
+        pesos.put(2,5);
+        pesos.put(3,10);
+
+        // 9.tener date
+        Calendar calendar = Calendar.getInstance();
+        // Establecer la hora, minutos, segundos y milisegundos a cero
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date fechaActual = calendar.getTime();
+
+
+        // 10. Buscar o crear proresoxEjercicio
+        for(CajaRutina cajaRut : opciones)
+        {
+            ProgresoxEjercicio progresoxEjercicio = ejercicioProgresoxEjercicioService.findProgresoxEjercicioByEjercicioId(cajaRut.getEjercicio().getId().intValue(),cliente.get().getId().intValue());
+            if(progresoxEjercicio!=null)
+                cajaRut.setProgresoxEjercicio(progresoxEjercicio);
+            else{
+                progresoxEjercicio = new ProgresoxEjercicio();
+                List<Integer> equipoE = equipoEjercicioService.findEquipoItemidsByEjercicioid(cajaRut.getEjercicio().getId().intValue());
+                if(!equipoE.contains(15))
+                    progresoxEjercicio.setPeso(pesos.get(nivelA));
+                else
+                    progresoxEjercicio.setPeso(0);
+                progresoxEjercicio.setFecha(fechaActual);
+                progresoxEjercicio.setValoracion(0);
+                progresoxEjercicio.setSerie(4);
+                progresoxEjercicio.setRepeticiones(repeticiones.get(objetivoR));
+                progresoxEjercicio.setDescansoEntreSeries(descansos.get(objetivoR));
+                progresoxEjercicio.setUsuarioClienteId(cliente.get().getId().intValue());
+                cajaRut.setProgresoxEjercicio(progresoxEjercicio);
+            }
+        }
+
+
+        // 11. Buscar imagenes
+        for(CajaRutina cajaRutina : opciones)
+        {
+            cajaRutina.setImagenEjercicio(imagenEjercicioService.findByEjercicioid(cajaRutina.getEjercicio().getId().intValue()).get(0));
+        }
+
+        return  opciones;
+    }
 
 }

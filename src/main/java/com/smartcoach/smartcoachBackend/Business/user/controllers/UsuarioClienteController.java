@@ -182,7 +182,6 @@ public class UsuarioClienteController {
         pesos.put(2,5);
         pesos.put(3,10);
 
-
         // 9. Crear proresoxEjercicio
         Calendar calendar = Calendar.getInstance();
 

@@ -21,7 +21,6 @@ public class Ejercicio {
     private String instruccionRespiracion;
 
 
-
     public Ejercicio()
     {
 
