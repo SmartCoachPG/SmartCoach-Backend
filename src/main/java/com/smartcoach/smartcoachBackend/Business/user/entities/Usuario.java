@@ -28,7 +28,6 @@ public class Usuario {
 
     private String token;
 
-
     public Usuario() {}
 
     public Usuario(String nombre, String email, String contrasenna, String fotoPerfil,Integer admi) {

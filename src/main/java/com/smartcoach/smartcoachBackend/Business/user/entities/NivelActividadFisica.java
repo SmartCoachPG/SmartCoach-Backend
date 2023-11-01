@@ -13,13 +13,10 @@ public class NivelActividadFisica {
     @Column(name = "titulo", unique = true, nullable = false)
     private String titulo;
 
-    @Column(name = "descripcion", length = 500)
-    private String descripcion;
 
-    public NivelActividadFisica(Integer id, String titulo, String descripcion) {
+    public NivelActividadFisica(Integer id, String titulo ) {
         this.id = id;
         this.titulo = titulo;
-        this.descripcion = descripcion;
     }
 
     public NivelActividadFisica() {}
@@ -40,11 +37,5 @@ public class NivelActividadFisica {
         this.titulo = titulo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 }
