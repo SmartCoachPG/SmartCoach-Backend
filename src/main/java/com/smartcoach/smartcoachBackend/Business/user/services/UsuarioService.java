@@ -65,4 +65,12 @@ public class UsuarioService {
         usuarioRepository.saveAll(usuarios);
     }
 
+    public Boolean checkEmail(String email)
+    {
+        Boolean existe= false;
+        if(usuarioRepository.findByEmail(email)!=null)
+            existe=true;
+        return existe;
+    }
+
 }

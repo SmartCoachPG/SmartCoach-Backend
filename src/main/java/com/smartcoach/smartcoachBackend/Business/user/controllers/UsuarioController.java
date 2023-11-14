@@ -73,4 +73,10 @@ public class UsuarioController {
         }
     }
 
+    @GetMapping("/emailcheck/{email}")
+    public Boolean checkEmail(@PathVariable String email)
+    {
+        return usuarioService.checkEmail(email);
+    }
+
 }
