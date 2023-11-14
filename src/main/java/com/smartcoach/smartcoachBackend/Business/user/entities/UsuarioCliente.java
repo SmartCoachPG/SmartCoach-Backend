@@ -27,16 +27,19 @@ public class UsuarioCliente extends Usuario{
     @Column(name = "grupo_muscularid", nullable = false)
     private Integer grupoMuscularid;
 
+    @Column(name="token")
+    private String token;
 
     public UsuarioCliente() {}
 
-    public UsuarioCliente(String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, Integer grupoMuscularid) {
+    public UsuarioCliente(String token, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, Integer grupoMuscularid) {
         this.genero = genero;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.gimnasioid = gimnasioid;
         this.nivelActividadFisicaid = nivelActividadFisicaid;
         this.objetivoRutinaid = objetivoRutinaid;
         this.grupoMuscularid = grupoMuscularid;
+        this.token = token;
     }
 
     public UsuarioCliente(String nombre, String email, String contrasenna, String fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, Integer grupoMuscularid) {
@@ -95,5 +98,15 @@ public class UsuarioCliente extends Usuario{
 
     public void setGrupoMuscularid(Integer grupoMuscularid) {
         this.grupoMuscularid = grupoMuscularid;
+    }
+
+    @Override
+    public String getToken() {
+        return token;
+    }
+
+    @Override
+    public void setToken(String token) {
+        this.token = token;
     }
 }

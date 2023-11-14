@@ -162,9 +162,9 @@ public class UsuarioClienteController {
         repeticiones.put(3,5);
 
         Map<Integer, Time>  descansos = new HashMap<>();
-        descansos.put(1, Time.valueOf("00:01:00"));
+        descansos.put(1, Time.valueOf("00:0:50"));
         descansos.put(2, Time.valueOf("00:01:30"));
-        descansos.put(3, Time.valueOf("00:03:00"));
+        descansos.put(3, Time.valueOf("00:04:00"));
 
         // 8. Obtener nivel actividad = peso
         int nivelA = cliente.get().getNivelActividadFisicaid();

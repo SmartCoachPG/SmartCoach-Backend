@@ -22,7 +22,7 @@ public class Gimnasio {
     @Column(nullable = false)
     private String barrio;
 
-    @Column(name = "imagen_gimnasio")
+    @Column(name = "imagengimnasio")
     private String imagenGimnasio;
 
     public Gimnasio(Long id, String nombre, Integer pisos, String direccion, String barrio, String imagenGimnasio) {
